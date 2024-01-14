@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/models/models.dart';
 
+import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_data_source.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
@@ -23,7 +24,7 @@ class ChatBotFacadeImpl implements IChatBotFacade {
         'question': FormControl<String>(value: ''),
       }),
       'mode': FormGroup({
-        'mode_val': FormControl<int>(value: 0),
+        'modes': FormControl<ChatBotMode>(value: ChatBotMode.qa),
       }),
     },
   );
@@ -35,6 +36,9 @@ class ChatBotFacadeImpl implements IChatBotFacade {
 
   @override
   FormGroup? get formGroup => _formGroup;
+
+  @override
+  ChatBotMode get currMode => _mode.control('modes').value as ChatBotMode;
 
   @override
   Future<List<IChatConversation>> postQuestion({

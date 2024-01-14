@@ -7,4 +7,6 @@ class ChatBotEvent with _$ChatBotEvent {
   const factory ChatBotEvent.postQuestion({
     String? textQuestion,
   }) = _PostQuestion;
+
+  const factory ChatBotEvent.changeMode() = _ChangeMode;
 }

@@ -20,18 +20,21 @@ mixin _$ChatBotEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String? textQuestion) postQuestion,
+    required TResult Function() changeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String? textQuestion)? postQuestion,
+    TResult? Function()? changeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String? textQuestion)? postQuestion,
+    TResult Function()? changeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ChatBotEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PostQuestion value) postQuestion,
+    required TResult Function(_ChangeMode value) changeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PostQuestion value)? postQuestion,
+    TResult? Function(_ChangeMode value)? changeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PostQuestion value)? postQuestion,
+    TResult Function(_ChangeMode value)? changeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String? textQuestion) postQuestion,
+    required TResult Function() changeMode,
   }) {
     return started();
   }
@@ -123,6 +130,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String? textQuestion)? postQuestion,
+    TResult? Function()? changeMode,
   }) {
     return started?.call();
   }
@@ -132,6 +140,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String? textQuestion)? postQuestion,
+    TResult Function()? changeMode,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,6 +154,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PostQuestion value) postQuestion,
+    required TResult Function(_ChangeMode value) changeMode,
   }) {
     return started(this);
   }
@@ -154,6 +164,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PostQuestion value)? postQuestion,
+    TResult? Function(_ChangeMode value)? changeMode,
   }) {
     return started?.call(this);
   }
@@ -163,6 +174,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PostQuestion value)? postQuestion,
+    TResult Function(_ChangeMode value)? changeMode,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -243,6 +255,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String? textQuestion) postQuestion,
+    required TResult Function() changeMode,
   }) {
     return postQuestion(textQuestion);
   }
@@ -252,6 +265,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String? textQuestion)? postQuestion,
+    TResult? Function()? changeMode,
   }) {
     return postQuestion?.call(textQuestion);
   }
@@ -261,6 +275,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String? textQuestion)? postQuestion,
+    TResult Function()? changeMode,
     required TResult orElse(),
   }) {
     if (postQuestion != null) {
@@ -274,6 +289,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_PostQuestion value) postQuestion,
+    required TResult Function(_ChangeMode value) changeMode,
   }) {
     return postQuestion(this);
   }
@@ -283,6 +299,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_PostQuestion value)? postQuestion,
+    TResult? Function(_ChangeMode value)? changeMode,
   }) {
     return postQuestion?.call(this);
   }
@@ -292,6 +309,7 @@ class _$PostQuestionImpl implements _PostQuestion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_PostQuestion value)? postQuestion,
+    TResult Function(_ChangeMode value)? changeMode,
     required TResult orElse(),
   }) {
     if (postQuestion != null) {
@@ -309,6 +327,114 @@ abstract class _PostQuestion implements ChatBotEvent {
   @JsonKey(ignore: true)
   _$$PostQuestionImplCopyWith<_$PostQuestionImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeModeImplCopyWith<$Res> {
+  factory _$$ChangeModeImplCopyWith(
+          _$ChangeModeImpl value, $Res Function(_$ChangeModeImpl) then) =
+      __$$ChangeModeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChangeModeImplCopyWithImpl<$Res>
+    extends _$ChatBotEventCopyWithImpl<$Res, _$ChangeModeImpl>
+    implements _$$ChangeModeImplCopyWith<$Res> {
+  __$$ChangeModeImplCopyWithImpl(
+      _$ChangeModeImpl _value, $Res Function(_$ChangeModeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChangeModeImpl implements _ChangeMode {
+  const _$ChangeModeImpl();
+
+  @override
+  String toString() {
+    return 'ChatBotEvent.changeMode()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ChangeModeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String? textQuestion) postQuestion,
+    required TResult Function() changeMode,
+  }) {
+    return changeMode();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String? textQuestion)? postQuestion,
+    TResult? Function()? changeMode,
+  }) {
+    return changeMode?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String? textQuestion)? postQuestion,
+    TResult Function()? changeMode,
+    required TResult orElse(),
+  }) {
+    if (changeMode != null) {
+      return changeMode();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PostQuestion value) postQuestion,
+    required TResult Function(_ChangeMode value) changeMode,
+  }) {
+    return changeMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PostQuestion value)? postQuestion,
+    TResult? Function(_ChangeMode value)? changeMode,
+  }) {
+    return changeMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PostQuestion value)? postQuestion,
+    TResult Function(_ChangeMode value)? changeMode,
+    required TResult orElse(),
+  }) {
+    if (changeMode != null) {
+      return changeMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeMode implements ChatBotEvent {
+  const factory _ChangeMode() = _$ChangeModeImpl;
 }
 
 /// @nodoc

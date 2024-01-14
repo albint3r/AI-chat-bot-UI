@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../core/widgets/text/text_title.dart';
+import 'mode_dropdown_field.dart';
+
 class TopRowIndicators extends StatelessWidget {
   const TopRowIndicators({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('AlbertoCV GPT3.5'),
-          Text('V.1'),
+          const ModeDropDownField(),
+          TextTitle.h3('V.1'),
         ],
       ),
     );
