@@ -66,5 +66,27 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         ),
       );
     });
+    on<_ConnectToChatAgentWebSocket>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+        ),
+      );
+      final channel = facade.connectToChatAgentWebSocket();
+      emit(
+        state.copyWith(
+          isLoading: false,
+        ),
+      );
+      await emit.forEach(
+        channel.stream,
+        onData: (data) {
+          print('*-' * 100);
+          print(data);
+          print('*-' * 100);
+          return state.copyWith();
+        },
+      );
+    });
   }
 }

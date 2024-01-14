@@ -9,4 +9,7 @@ class ChatBotEvent with _$ChatBotEvent {
   }) = _PostQuestion;
 
   const factory ChatBotEvent.changeMode() = _ChangeMode;
+
+  const factory ChatBotEvent.connectToChatAgentWebSocket() =
+      _ConnectToChatAgentWebSocket;
 }

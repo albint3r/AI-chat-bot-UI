@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/models/models.dart';
+import 'package:uuid/uuid.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
@@ -33,12 +35,18 @@ class ChatBotFacadeImpl implements IChatBotFacade {
 
   late final FormGroup _chatForm = _formGroup.control('chat') as FormGroup;
   late final FormGroup _mode = _formGroup.control('mode') as FormGroup;
+  late final WebSocketChannel _channel;
 
   @override
   FormGroup? get formGroup => _formGroup;
 
+  // Extract the value of the Modes FormGroup
   @override
   ChatBotMode get currMode => _mode.control('modes').value as ChatBotMode;
+
+  // Chat websocket Channel:
+  @override
+  WebSocketChannel get channel => _channel;
 
   @override
   Future<List<IChatConversation>> postQuestion({
@@ -75,5 +83,12 @@ class ChatBotFacadeImpl implements IChatBotFacade {
       suggestedQuestions.add(_suggestedQuestions[randIndex]);
     }
     return List.from(suggestedQuestions);
+  }
+
+  @override
+  WebSocketChannel connectToChatAgentWebSocket() {
+    const uuid = Uuid();
+    final chatId = uuid.v4();
+    return _channel = _dataSource.connectToChatAgentWebSocket(chatId);
   }
 }

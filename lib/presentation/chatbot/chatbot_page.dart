@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../aplication/chatbot/chatbot_bloc.dart';
+import '../../domain/chatbot/chatbot_mode.dart';
 import '../../injectables.dart';
 import 'widgets/body_chatbot.dart';
 
@@ -17,9 +18,21 @@ class ChatBotPage extends StatelessWidget {
         ..add(
           const ChatBotEvent.started(),
         ),
-      child: const SafeArea(
-        child: Scaffold(
-          body: BodyChatBot(),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ChatBotBloc, ChatBotState>(
+            listenWhen: (pre, curr) =>
+                pre.chatBotMode != curr.chatBotMode &&
+                curr.chatBotMode == ChatBotMode.agent,
+            listener: (context, _) => context.read<ChatBotBloc>().add(
+                  const ChatBotEvent.connectToChatAgentWebSocket(),
+                ),
+          ),
+        ],
+        child: const SafeArea(
+          child: Scaffold(
+            body: BodyChatBot(),
+          ),
         ),
       ),
     );
