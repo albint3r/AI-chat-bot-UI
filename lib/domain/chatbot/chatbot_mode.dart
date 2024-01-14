@@ -1,0 +1,4 @@
+enum ChatBotMode {
+  qa,
+  agent,
+}

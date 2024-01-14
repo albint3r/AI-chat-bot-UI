@@ -314,6 +314,7 @@ abstract class _PostQuestion implements ChatBotEvent {
 /// @nodoc
 mixin _$ChatBotState {
   bool get isLoading => throw _privateConstructorUsedError;
+  ChatBotMode get chatBotMode => throw _privateConstructorUsedError;
   List<IChatConversation> get chatConversation =>
       throw _privateConstructorUsedError;
   List<IChatConversation> get suggestedQuestions =>
@@ -333,6 +334,7 @@ abstract class $ChatBotStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
+      ChatBotMode chatBotMode,
       List<IChatConversation> chatConversation,
       List<IChatConversation> suggestedQuestions,
       FormGroup? formGroup});
@@ -352,6 +354,7 @@ class _$ChatBotStateCopyWithImpl<$Res, $Val extends ChatBotState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? chatBotMode = null,
     Object? chatConversation = null,
     Object? suggestedQuestions = null,
     Object? formGroup = freezed,
@@ -361,6 +364,10 @@ class _$ChatBotStateCopyWithImpl<$Res, $Val extends ChatBotState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      chatBotMode: null == chatBotMode
+          ? _value.chatBotMode
+          : chatBotMode // ignore: cast_nullable_to_non_nullable
+              as ChatBotMode,
       chatConversation: null == chatConversation
           ? _value.chatConversation
           : chatConversation // ignore: cast_nullable_to_non_nullable
@@ -387,6 +394,7 @@ abstract class _$$ChatBotStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
+      ChatBotMode chatBotMode,
       List<IChatConversation> chatConversation,
       List<IChatConversation> suggestedQuestions,
       FormGroup? formGroup});
@@ -404,6 +412,7 @@ class __$$ChatBotStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? chatBotMode = null,
     Object? chatConversation = null,
     Object? suggestedQuestions = null,
     Object? formGroup = freezed,
@@ -413,6 +422,10 @@ class __$$ChatBotStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      chatBotMode: null == chatBotMode
+          ? _value.chatBotMode
+          : chatBotMode // ignore: cast_nullable_to_non_nullable
+              as ChatBotMode,
       chatConversation: null == chatConversation
           ? _value._chatConversation
           : chatConversation // ignore: cast_nullable_to_non_nullable
@@ -434,6 +447,7 @@ class __$$ChatBotStateImplCopyWithImpl<$Res>
 class _$ChatBotStateImpl implements _ChatBotState {
   const _$ChatBotStateImpl(
       {required this.isLoading,
+      required this.chatBotMode,
       required final List<IChatConversation> chatConversation,
       required final List<IChatConversation> suggestedQuestions,
       this.formGroup})
@@ -442,6 +456,8 @@ class _$ChatBotStateImpl implements _ChatBotState {
 
   @override
   final bool isLoading;
+  @override
+  final ChatBotMode chatBotMode;
   final List<IChatConversation> _chatConversation;
   @override
   List<IChatConversation> get chatConversation {
@@ -465,7 +481,7 @@ class _$ChatBotStateImpl implements _ChatBotState {
 
   @override
   String toString() {
-    return 'ChatBotState(isLoading: $isLoading, chatConversation: $chatConversation, suggestedQuestions: $suggestedQuestions, formGroup: $formGroup)';
+    return 'ChatBotState(isLoading: $isLoading, chatBotMode: $chatBotMode, chatConversation: $chatConversation, suggestedQuestions: $suggestedQuestions, formGroup: $formGroup)';
   }
 
   @override
@@ -475,6 +491,8 @@ class _$ChatBotStateImpl implements _ChatBotState {
             other is _$ChatBotStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.chatBotMode, chatBotMode) ||
+                other.chatBotMode == chatBotMode) &&
             const DeepCollectionEquality()
                 .equals(other._chatConversation, _chatConversation) &&
             const DeepCollectionEquality()
@@ -487,6 +505,7 @@ class _$ChatBotStateImpl implements _ChatBotState {
   int get hashCode => Object.hash(
       runtimeType,
       isLoading,
+      chatBotMode,
       const DeepCollectionEquality().hash(_chatConversation),
       const DeepCollectionEquality().hash(_suggestedQuestions),
       formGroup);
@@ -501,12 +520,15 @@ class _$ChatBotStateImpl implements _ChatBotState {
 abstract class _ChatBotState implements ChatBotState {
   const factory _ChatBotState(
       {required final bool isLoading,
+      required final ChatBotMode chatBotMode,
       required final List<IChatConversation> chatConversation,
       required final List<IChatConversation> suggestedQuestions,
       final FormGroup? formGroup}) = _$ChatBotStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  ChatBotMode get chatBotMode;
   @override
   List<IChatConversation> get chatConversation;
   @override

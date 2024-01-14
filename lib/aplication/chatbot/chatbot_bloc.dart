@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../domain/chatbot/answer_loading.dart';
+import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
 

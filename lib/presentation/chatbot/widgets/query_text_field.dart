@@ -12,7 +12,8 @@ class QueryTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final form = context.watch<ChatBotBloc>().state;
+    final chat = context.watch<ChatBotBloc>().state;
+    final form = chat.formGroup!.control('chat') as FormGroup;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -23,7 +24,7 @@ class QueryTextField extends StatelessWidget {
           SizedBox(
             width: textFieldWidth,
             child: ReactiveForm(
-              formGroup: form.formGroup!,
+              formGroup: form,
               child: ReactiveTextField(
                 onSubmitted: (control) => context.read<ChatBotBloc>().add(
                       const ChatBotEvent.postQuestion(),
