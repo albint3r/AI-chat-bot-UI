@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/models/models.dart';
 import 'package:uuid/uuid.dart';
+import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../domain/chatbot/chatbot_mode.dart';
@@ -91,4 +92,9 @@ class ChatBotFacadeImpl implements IChatBotFacade {
     final chatId = uuid.v4();
     return _channel = _dataSource.connectToChatAgentWebSocket(chatId);
   }
+
+  @override
+  void disconnectToChatAgentWebSocket() => _channel.sink.close(
+        status.normalClosure,
+      );
 }

@@ -66,6 +66,9 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         ),
       );
     });
+    on<_DisconnectToChatAgentWebSocket>(
+      (event, emit) => facade.disconnectToChatAgentWebSocket(),
+    );
     on<_ConnectToChatAgentWebSocket>((event, emit) async {
       emit(
         state.copyWith(

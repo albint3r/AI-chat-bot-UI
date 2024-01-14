@@ -12,4 +12,7 @@ class ChatBotEvent with _$ChatBotEvent {
 
   const factory ChatBotEvent.connectToChatAgentWebSocket() =
       _ConnectToChatAgentWebSocket;
+
+  const factory ChatBotEvent.disconnectToChatAgentWebSocket() =
+      _DisconnectToChatAgentWebSocket;
 }

@@ -21,12 +21,18 @@ class ChatBotPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<ChatBotBloc, ChatBotState>(
-            listenWhen: (pre, curr) =>
-                pre.chatBotMode != curr.chatBotMode &&
-                curr.chatBotMode == ChatBotMode.agent,
-            listener: (context, _) => context.read<ChatBotBloc>().add(
-                  const ChatBotEvent.connectToChatAgentWebSocket(),
-                ),
+            listenWhen: (pre, curr) => pre.chatBotMode != curr.chatBotMode,
+            listener: (context, state) {
+              if (state.chatBotMode == ChatBotMode.agent) {
+                context.read<ChatBotBloc>().add(
+                      const ChatBotEvent.connectToChatAgentWebSocket(),
+                    );
+              } else {
+                context.read<ChatBotBloc>().add(
+                      const ChatBotEvent.disconnectToChatAgentWebSocket(),
+                    );
+              }
+            },
           ),
         ],
         child: const SafeArea(
