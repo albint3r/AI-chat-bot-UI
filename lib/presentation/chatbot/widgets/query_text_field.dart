@@ -4,11 +4,29 @@ import 'package:gap/gap.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../../aplication/chatbot/chatbot_bloc.dart';
+import '../../../domain/chatbot/chatbot_mode.dart';
 import '../../core/theme/const_values.dart';
 import '../../core/widgets/text/text_body.dart';
 
 class QueryTextField extends StatelessWidget {
   const QueryTextField({super.key});
+
+  void _sendQuestionByMode(ChatBotState chat, BuildContext context) {
+    switch (chat.chatBotMode) {
+      case ChatBotMode.qa:
+        {
+          context.read<ChatBotBloc>().add(
+                const ChatBotEvent.postQuestion(),
+              );
+        }
+      case ChatBotMode.agent:
+        {
+          context.read<ChatBotBloc>().add(
+                const ChatBotEvent.addEventToChatAgentWebSocket(),
+              );
+        }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +44,10 @@ class QueryTextField extends StatelessWidget {
             child: ReactiveForm(
               formGroup: form,
               child: ReactiveTextField(
-                onSubmitted: (control) => context.read<ChatBotBloc>().add(
-                      const ChatBotEvent.postQuestion(),
-                    ),
+                onSubmitted: (_) => _sendQuestionByMode(
+                  chat,
+                  context,
+                ),
                 style: theme.textTheme.bodyMedium,
                 decoration: InputDecoration(
                   hintText: 'Message Alberto-GPT ...',
@@ -53,8 +72,9 @@ class QueryTextField extends StatelessWidget {
                               color: colorScheme.background,
                               onPressed: question.isEmpty
                                   ? null
-                                  : () => context.read<ChatBotBloc>().add(
-                                        const ChatBotEvent.postQuestion(),
+                                  : () => _sendQuestionByMode(
+                                        chat,
+                                        context,
                                       ),
                               icon: const Icon(
                                 Icons.arrow_upward,

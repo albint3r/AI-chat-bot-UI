@@ -36,7 +36,7 @@ class ChatBotFacadeImpl implements IChatBotFacade {
 
   late final FormGroup _chatForm = _formGroup.control('chat') as FormGroup;
   late final FormGroup _mode = _formGroup.control('mode') as FormGroup;
-  late final WebSocketChannel _channel;
+  late WebSocketChannel _channel;
 
   @override
   FormGroup? get formGroup => _formGroup;

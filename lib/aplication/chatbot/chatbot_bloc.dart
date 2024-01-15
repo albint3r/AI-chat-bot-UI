@@ -7,6 +7,7 @@ import '../../domain/chatbot/answer_loading.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
+import '../../domain/core/types.dart';
 
 part 'chatbot_bloc.freezed.dart';
 
@@ -28,36 +29,20 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
       );
     });
     on<_PostQuestion>((event, emit) async {
-      // Add Question to logs
-      final newQuestion = facade.addQuestionToConversation(
+      await _sendQuestion(
+        facade,
+        emit,
         textQuestion: event.textQuestion,
+        callBackQuestion: facade.postQuestion,
       );
-      // Adding this extra line we create the effect of [loading] after the user
-      // made a query. It use a [answerLoading] Entity, this entity only inform
-      // the presentation to use the typing of the class to if else statement
-      // and put the loading instated of the text of the user
-      // [because this list is created HERE] it will be updated
-      // when the API response, this will create the effect of the end
-      // of the loading stage.
-      final answerLoadingConversation = List<IChatConversation>.from(
-        [...newQuestion, const AnswerLoading(text: '')],
-      );
-      emit(
-        state.copyWith(
-          chatConversation: answerLoadingConversation,
-        ),
-      );
-      // Add Answer to logs
-      final newAnswer = await facade.postQuestion(
+    });
+    on<_AddEventToChatAgentWebSocket>((event, emit) async {
+      await _sendQuestion(
+        facade,
+        emit,
         textQuestion: event.textQuestion,
+        callBackQuestion: facade.postQuestion,
       );
-      if (newAnswer.isNotEmpty) {
-        emit(
-          state.copyWith(
-            chatConversation: List.from(newAnswer),
-          ),
-        );
-      }
     });
     on<_ChangeMode>((event, emit) {
       emit(
@@ -69,6 +54,7 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
     on<_DisconnectToChatAgentWebSocket>(
       (event, emit) => facade.disconnectToChatAgentWebSocket(),
     );
+
     on<_ConnectToChatAgentWebSocket>((event, emit) async {
       emit(
         state.copyWith(
@@ -91,5 +77,42 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         },
       );
     });
+  }
+
+  Future<void> _sendQuestion(
+    IChatBotFacade facade,
+    Emitter<ChatBotState> emit, {
+    required CallBackQuestion callBackQuestion,
+    String? textQuestion,
+  }) async {
+    final newQuestion = facade.addQuestionToConversation(
+      textQuestion: textQuestion,
+    );
+    // Adding this extra line we create the effect of [loading] after the user
+    // made a query. It use a [answerLoading] Entity, this entity only inform
+    // the presentation to use the typing of the class to if else statement
+    // and put the loading instated of the text of the user
+    // [because this list is created HERE] it will be updated
+    // when the API response, this will create the effect of the end
+    // of the loading stage.
+    final answerLoadingConversation = List<IChatConversation>.from(
+      [...newQuestion, const AnswerLoading(text: '')],
+    );
+    emit(
+      state.copyWith(
+        chatConversation: answerLoadingConversation,
+      ),
+    );
+    // Add Answer to logs
+    final newAnswer = await callBackQuestion(
+      textQuestion: textQuestion,
+    );
+    if (newAnswer.isNotEmpty) {
+      emit(
+        state.copyWith(
+          chatConversation: List.from(newAnswer),
+        ),
+      );
+    }
   }
 }

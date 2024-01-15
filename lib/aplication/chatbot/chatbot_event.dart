@@ -15,4 +15,8 @@ class ChatBotEvent with _$ChatBotEvent {
 
   const factory ChatBotEvent.disconnectToChatAgentWebSocket() =
       _DisconnectToChatAgentWebSocket;
+
+  const factory ChatBotEvent.addEventToChatAgentWebSocket({
+    String? textQuestion,
+  }) = _AddEventToChatAgentWebSocket;
 }

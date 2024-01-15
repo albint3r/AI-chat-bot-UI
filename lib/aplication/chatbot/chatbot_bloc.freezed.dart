@@ -23,6 +23,8 @@ mixin _$ChatBotEvent {
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,7 @@ mixin _$ChatBotEvent {
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +44,7 @@ mixin _$ChatBotEvent {
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +57,8 @@ mixin _$ChatBotEvent {
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +70,8 @@ mixin _$ChatBotEvent {
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +83,8 @@ mixin _$ChatBotEvent {
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +151,8 @@ class _$StartedImpl implements _Started {
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) {
     return started();
   }
@@ -153,6 +165,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) {
     return started?.call();
   }
@@ -165,6 +178,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -183,6 +197,8 @@ class _$StartedImpl implements _Started {
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) {
     return started(this);
   }
@@ -197,6 +213,8 @@ class _$StartedImpl implements _Started {
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) {
     return started?.call(this);
   }
@@ -211,6 +229,8 @@ class _$StartedImpl implements _Started {
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -294,6 +314,8 @@ class _$PostQuestionImpl implements _PostQuestion {
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) {
     return postQuestion(textQuestion);
   }
@@ -306,6 +328,7 @@ class _$PostQuestionImpl implements _PostQuestion {
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) {
     return postQuestion?.call(textQuestion);
   }
@@ -318,6 +341,7 @@ class _$PostQuestionImpl implements _PostQuestion {
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (postQuestion != null) {
@@ -336,6 +360,8 @@ class _$PostQuestionImpl implements _PostQuestion {
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) {
     return postQuestion(this);
   }
@@ -350,6 +376,8 @@ class _$PostQuestionImpl implements _PostQuestion {
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) {
     return postQuestion?.call(this);
   }
@@ -364,6 +392,8 @@ class _$PostQuestionImpl implements _PostQuestion {
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (postQuestion != null) {
@@ -426,6 +456,8 @@ class _$ChangeModeImpl implements _ChangeMode {
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) {
     return changeMode();
   }
@@ -438,6 +470,7 @@ class _$ChangeModeImpl implements _ChangeMode {
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) {
     return changeMode?.call();
   }
@@ -450,6 +483,7 @@ class _$ChangeModeImpl implements _ChangeMode {
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (changeMode != null) {
@@ -468,6 +502,8 @@ class _$ChangeModeImpl implements _ChangeMode {
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) {
     return changeMode(this);
   }
@@ -482,6 +518,8 @@ class _$ChangeModeImpl implements _ChangeMode {
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) {
     return changeMode?.call(this);
   }
@@ -496,6 +534,8 @@ class _$ChangeModeImpl implements _ChangeMode {
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (changeMode != null) {
@@ -556,6 +596,8 @@ class _$ConnectToChatAgentWebSocketImpl
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) {
     return connectToChatAgentWebSocket();
   }
@@ -568,6 +610,7 @@ class _$ConnectToChatAgentWebSocketImpl
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) {
     return connectToChatAgentWebSocket?.call();
   }
@@ -580,6 +623,7 @@ class _$ConnectToChatAgentWebSocketImpl
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (connectToChatAgentWebSocket != null) {
@@ -598,6 +642,8 @@ class _$ConnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) {
     return connectToChatAgentWebSocket(this);
   }
@@ -612,6 +658,8 @@ class _$ConnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) {
     return connectToChatAgentWebSocket?.call(this);
   }
@@ -626,6 +674,8 @@ class _$ConnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (connectToChatAgentWebSocket != null) {
@@ -688,6 +738,8 @@ class _$DisconnectToChatAgentWebSocketImpl
     required TResult Function() changeMode,
     required TResult Function() connectToChatAgentWebSocket,
     required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
   }) {
     return disconnectToChatAgentWebSocket();
   }
@@ -700,6 +752,7 @@ class _$DisconnectToChatAgentWebSocketImpl
     TResult? Function()? changeMode,
     TResult? Function()? connectToChatAgentWebSocket,
     TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
   }) {
     return disconnectToChatAgentWebSocket?.call();
   }
@@ -712,6 +765,7 @@ class _$DisconnectToChatAgentWebSocketImpl
     TResult Function()? changeMode,
     TResult Function()? connectToChatAgentWebSocket,
     TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (disconnectToChatAgentWebSocket != null) {
@@ -730,6 +784,8 @@ class _$DisconnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     required TResult Function(_DisconnectToChatAgentWebSocket value)
         disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
   }) {
     return disconnectToChatAgentWebSocket(this);
   }
@@ -744,6 +800,8 @@ class _$DisconnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     TResult? Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
   }) {
     return disconnectToChatAgentWebSocket?.call(this);
   }
@@ -758,6 +816,8 @@ class _$DisconnectToChatAgentWebSocketImpl
         connectToChatAgentWebSocket,
     TResult Function(_DisconnectToChatAgentWebSocket value)?
         disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
     required TResult orElse(),
   }) {
     if (disconnectToChatAgentWebSocket != null) {
@@ -770,6 +830,181 @@ class _$DisconnectToChatAgentWebSocketImpl
 abstract class _DisconnectToChatAgentWebSocket implements ChatBotEvent {
   const factory _DisconnectToChatAgentWebSocket() =
       _$DisconnectToChatAgentWebSocketImpl;
+}
+
+/// @nodoc
+abstract class _$$AddEventToChatAgentWebSocketImplCopyWith<$Res> {
+  factory _$$AddEventToChatAgentWebSocketImplCopyWith(
+          _$AddEventToChatAgentWebSocketImpl value,
+          $Res Function(_$AddEventToChatAgentWebSocketImpl) then) =
+      __$$AddEventToChatAgentWebSocketImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? textQuestion});
+}
+
+/// @nodoc
+class __$$AddEventToChatAgentWebSocketImplCopyWithImpl<$Res>
+    extends _$ChatBotEventCopyWithImpl<$Res, _$AddEventToChatAgentWebSocketImpl>
+    implements _$$AddEventToChatAgentWebSocketImplCopyWith<$Res> {
+  __$$AddEventToChatAgentWebSocketImplCopyWithImpl(
+      _$AddEventToChatAgentWebSocketImpl _value,
+      $Res Function(_$AddEventToChatAgentWebSocketImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? textQuestion = freezed,
+  }) {
+    return _then(_$AddEventToChatAgentWebSocketImpl(
+      textQuestion: freezed == textQuestion
+          ? _value.textQuestion
+          : textQuestion // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddEventToChatAgentWebSocketImpl
+    implements _AddEventToChatAgentWebSocket {
+  const _$AddEventToChatAgentWebSocketImpl({this.textQuestion});
+
+  @override
+  final String? textQuestion;
+
+  @override
+  String toString() {
+    return 'ChatBotEvent.addEventToChatAgentWebSocket(textQuestion: $textQuestion)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddEventToChatAgentWebSocketImpl &&
+            (identical(other.textQuestion, textQuestion) ||
+                other.textQuestion == textQuestion));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, textQuestion);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddEventToChatAgentWebSocketImplCopyWith<
+          _$AddEventToChatAgentWebSocketImpl>
+      get copyWith => __$$AddEventToChatAgentWebSocketImplCopyWithImpl<
+          _$AddEventToChatAgentWebSocketImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String? textQuestion) postQuestion,
+    required TResult Function() changeMode,
+    required TResult Function() connectToChatAgentWebSocket,
+    required TResult Function() disconnectToChatAgentWebSocket,
+    required TResult Function(String? textQuestion)
+        addEventToChatAgentWebSocket,
+  }) {
+    return addEventToChatAgentWebSocket(textQuestion);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String? textQuestion)? postQuestion,
+    TResult? Function()? changeMode,
+    TResult? Function()? connectToChatAgentWebSocket,
+    TResult? Function()? disconnectToChatAgentWebSocket,
+    TResult? Function(String? textQuestion)? addEventToChatAgentWebSocket,
+  }) {
+    return addEventToChatAgentWebSocket?.call(textQuestion);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String? textQuestion)? postQuestion,
+    TResult Function()? changeMode,
+    TResult Function()? connectToChatAgentWebSocket,
+    TResult Function()? disconnectToChatAgentWebSocket,
+    TResult Function(String? textQuestion)? addEventToChatAgentWebSocket,
+    required TResult orElse(),
+  }) {
+    if (addEventToChatAgentWebSocket != null) {
+      return addEventToChatAgentWebSocket(textQuestion);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PostQuestion value) postQuestion,
+    required TResult Function(_ChangeMode value) changeMode,
+    required TResult Function(_ConnectToChatAgentWebSocket value)
+        connectToChatAgentWebSocket,
+    required TResult Function(_DisconnectToChatAgentWebSocket value)
+        disconnectToChatAgentWebSocket,
+    required TResult Function(_AddEventToChatAgentWebSocket value)
+        addEventToChatAgentWebSocket,
+  }) {
+    return addEventToChatAgentWebSocket(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PostQuestion value)? postQuestion,
+    TResult? Function(_ChangeMode value)? changeMode,
+    TResult? Function(_ConnectToChatAgentWebSocket value)?
+        connectToChatAgentWebSocket,
+    TResult? Function(_DisconnectToChatAgentWebSocket value)?
+        disconnectToChatAgentWebSocket,
+    TResult? Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
+  }) {
+    return addEventToChatAgentWebSocket?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PostQuestion value)? postQuestion,
+    TResult Function(_ChangeMode value)? changeMode,
+    TResult Function(_ConnectToChatAgentWebSocket value)?
+        connectToChatAgentWebSocket,
+    TResult Function(_DisconnectToChatAgentWebSocket value)?
+        disconnectToChatAgentWebSocket,
+    TResult Function(_AddEventToChatAgentWebSocket value)?
+        addEventToChatAgentWebSocket,
+    required TResult orElse(),
+  }) {
+    if (addEventToChatAgentWebSocket != null) {
+      return addEventToChatAgentWebSocket(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddEventToChatAgentWebSocket implements ChatBotEvent {
+  const factory _AddEventToChatAgentWebSocket({final String? textQuestion}) =
+      _$AddEventToChatAgentWebSocketImpl;
+
+  String? get textQuestion;
+  @JsonKey(ignore: true)
+  _$$AddEventToChatAgentWebSocketImplCopyWith<
+          _$AddEventToChatAgentWebSocketImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
