@@ -6,6 +6,7 @@ import '../../../aplication/chatbot/chatbot_bloc.dart';
 import '../../../domain/chatbot/i_chat_conversation.dart';
 import '../../../domain/chatbot/suggested_question.dart';
 import '../../core/theme/const_values.dart';
+import '../utils/utils.dart';
 import 'question_card.dart';
 
 class QuestionsRowBox extends StatelessWidget {
@@ -14,17 +15,18 @@ class QuestionsRowBox extends StatelessWidget {
   List<Widget> _getQuestionsCards(
     BuildContext context,
     List<IChatConversation> questions,
+    ChatBotState chat,
   ) {
     return questions.map((question) {
       if (question is SuggestedQuestion) {
         return QuestionCard(
           title: question.title,
           subTitle: question.subTitle,
-          onPressed: () => context.read<ChatBotBloc>().add(
-                ChatBotEvent.postQuestion(
-                  textQuestion: question.text,
-                ),
-              ),
+          onPressed: () => sendQuestionByMode(
+            chat,
+            context,
+            textQuestion: question.text,
+          ),
         );
       }
       return const QuestionCard(title: '', subTitle: '');
@@ -55,6 +57,7 @@ class QuestionsRowBox extends StatelessWidget {
     final questionCards = _getQuestionsCards(
       context,
       suggestedQuestions,
+      chat,
     );
     if (width <= screenBreakingPoint) {
       return _getListViewCardFormat(questionCards);

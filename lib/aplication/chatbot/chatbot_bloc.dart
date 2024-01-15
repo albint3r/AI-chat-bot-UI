@@ -7,7 +7,6 @@ import '../../domain/chatbot/answer_loading.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
-import '../../domain/core/types.dart';
 
 part 'chatbot_bloc.freezed.dart';
 
@@ -29,19 +28,32 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
       );
     });
     on<_PostQuestion>((event, emit) async {
-      await _sendQuestion(
+      _sendQuestion(
         facade,
         emit,
-        textQuestion: event.textQuestion,
-        callBackQuestion: facade.postQuestion,
+        event.textQuestion,
       );
+      // Add Answer to logs
+      final newAnswer = await facade.postQuestion(
+        textQuestion: event.textQuestion,
+      );
+      if (newAnswer.isNotEmpty) {
+        emit(
+          state.copyWith(
+            chatConversation: List.from(newAnswer),
+          ),
+        );
+      }
     });
     on<_AddEventToChatAgentWebSocket>((event, emit) async {
-      await _sendQuestion(
+      _sendQuestion(
         facade,
         emit,
+        event.textQuestion,
+      );
+      // Only send the question to the Socket pool connection
+      facade.addEventToChatAgentWebSocket(
         textQuestion: event.textQuestion,
-        callBackQuestion: facade.postQuestion,
       );
     });
     on<_ChangeMode>((event, emit) {
@@ -54,7 +66,6 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
     on<_DisconnectToChatAgentWebSocket>(
       (event, emit) => facade.disconnectToChatAgentWebSocket(),
     );
-
     on<_ConnectToChatAgentWebSocket>((event, emit) async {
       emit(
         state.copyWith(
@@ -79,12 +90,11 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
     });
   }
 
-  Future<void> _sendQuestion(
+  void _sendQuestion(
     IChatBotFacade facade,
-    Emitter<ChatBotState> emit, {
-    required CallBackQuestion callBackQuestion,
+    Emitter<ChatBotState> emit,
     String? textQuestion,
-  }) async {
+  ) {
     final newQuestion = facade.addQuestionToConversation(
       textQuestion: textQuestion,
     );
@@ -103,16 +113,5 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         chatConversation: answerLoadingConversation,
       ),
     );
-    // Add Answer to logs
-    final newAnswer = await callBackQuestion(
-      textQuestion: textQuestion,
-    );
-    if (newAnswer.isNotEmpty) {
-      emit(
-        state.copyWith(
-          chatConversation: List.from(newAnswer),
-        ),
-      );
-    }
   }
 }

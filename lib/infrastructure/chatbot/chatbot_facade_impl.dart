@@ -65,6 +65,18 @@ class ChatBotFacadeImpl implements IChatBotFacade {
   }
 
   @override
+  void addEventToChatAgentWebSocket({
+    String? textQuestion,
+  }) {
+    final control = _chatForm.control('question');
+    textQuestion = textQuestion ?? control.value as String;
+    control.value = '';
+    if (textQuestion.isNotEmpty) {
+      _channel.sink.add('{"question":"$textQuestion"}');
+    }
+  }
+
+  @override
   List<IChatConversation> addQuestionToConversation({
     String? textQuestion,
   }) {

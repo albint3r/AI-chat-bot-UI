@@ -23,4 +23,8 @@ abstract interface class IChatBotFacade {
   WebSocketChannel connectToChatAgentWebSocket();
 
   void disconnectToChatAgentWebSocket();
+
+  void addEventToChatAgentWebSocket({
+    String? textQuestion,
+  });
 }

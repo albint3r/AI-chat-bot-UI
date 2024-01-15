@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import '../../../aplication/chatbot/chatbot_bloc.dart';
 import '../../core/theme/const_values.dart';
 import '../../core/widgets/text/text_title.dart';
+import '../utils/utils.dart';
 import 'question_card.dart';
 
 class LateralQuestionArea extends StatelessWidget {
@@ -12,6 +13,7 @@ class LateralQuestionArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final chat = context.watch<ChatBotBloc>().state;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final size = MediaQuery.of(context).size;
@@ -38,11 +40,11 @@ class LateralQuestionArea extends StatelessWidget {
                   child: QuestionCard(
                     title: question.title,
                     subTitle: question.subTitle,
-                    onPressed: () => context.read<ChatBotBloc>().add(
-                          ChatBotEvent.postQuestion(
-                            textQuestion: question.text,
-                          ),
-                        ),
+                    onPressed: () => sendQuestionByMode(
+                      chat,
+                      context,
+                      textQuestion: question.text,
+                    ),
                   ),
                 );
               },
