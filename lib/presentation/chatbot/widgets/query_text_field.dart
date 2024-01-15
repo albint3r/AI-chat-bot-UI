@@ -27,7 +27,9 @@ class QueryTextField extends StatelessWidget {
             child: ReactiveForm(
               formGroup: form,
               child: ReactiveTextField(
-                onSubmitted: (control) => sendQuestionByMode(chat, context),
+                onSubmitted: chat.isFetching
+                    ? null
+                    : (control) => sendQuestionByMode(chat, context),
                 style: theme.textTheme.bodyMedium,
                 decoration: InputDecoration(
                   hintText: 'Message Alberto-GPT ...',
@@ -50,7 +52,7 @@ class QueryTextField extends StatelessWidget {
                               disabledColor: colorScheme.background,
                               hoverColor: colorScheme.primary,
                               color: colorScheme.background,
-                              onPressed: question.isEmpty
+                              onPressed: question.isEmpty || chat.isFetching
                                   ? null
                                   : () => sendQuestionByMode(chat, context),
                               icon: const Icon(

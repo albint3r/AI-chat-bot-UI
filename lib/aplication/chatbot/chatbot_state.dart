@@ -4,6 +4,7 @@ part of 'chatbot_bloc.dart';
 class ChatBotState with _$ChatBotState {
   const factory ChatBotState({
     required bool isLoading,
+    required bool isFetching,
     required ChatBotMode chatBotMode,
     required List<IChatConversation> chatConversation,
     required List<IChatConversation> suggestedQuestions,
@@ -12,6 +13,7 @@ class ChatBotState with _$ChatBotState {
 
   factory ChatBotState.initial() => const ChatBotState(
         isLoading: true,
+        isFetching: false,
         chatBotMode: ChatBotMode.qa,
         chatConversation: [],
         suggestedQuestions: [],
