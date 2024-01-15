@@ -6,13 +6,15 @@ import 'package:reactive_forms/reactive_forms.dart';
 import '../../../aplication/chatbot/chatbot_bloc.dart';
 import '../../core/theme/const_values.dart';
 import '../../core/widgets/text/text_body.dart';
+import '../utils/utils.dart';
 
 class QueryTextField extends StatelessWidget {
   const QueryTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final form = context.watch<ChatBotBloc>().state;
+    final chat = context.watch<ChatBotBloc>().state;
+    final form = chat.formGroup!.control('chat') as FormGroup;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -23,11 +25,11 @@ class QueryTextField extends StatelessWidget {
           SizedBox(
             width: textFieldWidth,
             child: ReactiveForm(
-              formGroup: form.formGroup!,
+              formGroup: form,
               child: ReactiveTextField(
-                onSubmitted: (control) => context.read<ChatBotBloc>().add(
-                      const ChatBotEvent.postQuestion(),
-                    ),
+                onSubmitted: chat.isFetching
+                    ? null
+                    : (control) => sendQuestionByMode(chat, context),
                 style: theme.textTheme.bodyMedium,
                 decoration: InputDecoration(
                   hintText: 'Message Alberto-GPT ...',
@@ -50,11 +52,9 @@ class QueryTextField extends StatelessWidget {
                               disabledColor: colorScheme.background,
                               hoverColor: colorScheme.primary,
                               color: colorScheme.background,
-                              onPressed: question.isEmpty
+                              onPressed: question.isEmpty || chat.isFetching
                                   ? null
-                                  : () => context.read<ChatBotBloc>().add(
-                                        const ChatBotEvent.postQuestion(),
-                                      ),
+                                  : () => sendQuestionByMode(chat, context),
                               icon: const Icon(
                                 Icons.arrow_upward,
                                 size: 30,

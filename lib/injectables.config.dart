@@ -45,12 +45,15 @@ _i1.GetIt $initGetIt(
   gh.factory<_i6.BaseOptions>(() => registerModule.getDioBaseOptions());
   gh.factory<Iterable<_i6.Interceptor>>(() => registerModule.getInterceptors());
   gh.singleton<_i7.ThemeConfig>(_i7.ThemeConfig());
+  gh.singleton<Uri>(registerModule.getUriWebSocket());
   gh.singleton<_i6.Dio>(registerModule.getDio(
     gh<_i6.BaseOptions>(),
     gh<Iterable<_i6.Interceptor>>(),
   ));
-  gh.factory<_i8.IChatBotDataSource>(
-      () => _i9.ChatBotDataSourceImpl(gh<_i6.Dio>()));
+  gh.factory<_i8.IChatBotDataSource>(() => _i9.ChatBotDataSourceImpl(
+        gh<_i6.Dio>(),
+        gh<Uri>(),
+      ));
   gh.factory<_i10.IChatBotFacade>(
       () => _i11.ChatBotFacadeImpl(gh<_i8.IChatBotDataSource>()));
   gh.factory<_i12.ChatBotBloc>(

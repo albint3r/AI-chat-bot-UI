@@ -42,4 +42,14 @@ abstract class RegisterModule {
     // ..add(auth);
     return dio;
   }
+
+  @singleton
+  Uri getUriWebSocket() {
+    return Uri(
+      scheme: 'ws',
+      host: '192.168.1.71',
+      path: '/chatbot/v1/ws/chat-bot',
+      port: 8000,
+    );
+  }
 }
