@@ -20,6 +20,10 @@ abstract interface class IChatBotFacade {
     String? textQuestion,
   });
 
+  List<IChatConversation> getChatConversationFromWebSocket(
+    dynamic data,
+  );
+
   WebSocketChannel connectToChatAgentWebSocket();
 
   void disconnectToChatAgentWebSocket();

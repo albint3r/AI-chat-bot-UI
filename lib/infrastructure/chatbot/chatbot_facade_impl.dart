@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:injectable/injectable.dart';
@@ -7,11 +8,13 @@ import 'package:uuid/uuid.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../../domain/chatbot/answer.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_data_source.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
 import '../../domain/chatbot/question.dart';
+import '../../domain/core/types.dart';
 import '../../presentation/core/theme/const_values.dart';
 
 @Injectable(as: IChatBotFacade)
@@ -65,6 +68,14 @@ class ChatBotFacadeImpl implements IChatBotFacade {
   }
 
   @override
+  List<IChatConversation> getChatConversationFromWebSocket(dynamic data) {
+    final jsonData = json.decode(data as String) as Json;
+    final answer = Answer.fromJson(jsonData);
+    chatConversation.add(answer);
+    return chatConversation;
+  }
+
+  @override
   void addEventToChatAgentWebSocket({
     String? textQuestion,
   }) {
@@ -72,7 +83,7 @@ class ChatBotFacadeImpl implements IChatBotFacade {
     textQuestion = textQuestion ?? control.value as String;
     control.value = '';
     if (textQuestion.isNotEmpty) {
-      _channel.sink.add('{"question":"$textQuestion"}');
+      _channel.sink.add('{"text":"$textQuestion"}');
     }
   }
 

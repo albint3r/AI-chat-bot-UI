@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../domain/chatbot/answer.dart';
 import '../../domain/chatbot/answer_loading.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
+import '../../domain/core/types.dart';
 
 part 'chatbot_bloc.freezed.dart';
 
@@ -80,12 +84,9 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
       );
       await emit.forEach(
         channel.stream,
-        onData: (data) {
-          print('*-' * 100);
-          print(data);
-          print('*-' * 100);
-          return state.copyWith();
-        },
+        onData: (data) => state.copyWith(
+          chatConversation: facade.getChatConversationFromWebSocket(data),
+        ),
       );
     });
   }
