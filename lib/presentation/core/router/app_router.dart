@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../auth/login/login_page.dart';
 import '../../chatbot/chatbot_page.dart';
 
 part 'app_router.gr.dart';
@@ -10,8 +11,12 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: ChatBotRoute.page,
+        AutoRoute(
+          page: ChatBotRoute.page,
           initial: true,
-        )
-  ];
+        ),
+        AutoRoute(
+          page: LoginRoute.page,
+        ),
+      ];
 }

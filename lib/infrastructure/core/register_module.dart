@@ -5,9 +5,13 @@ import 'package:dio_intercept_to_curl/dio_intercept_to_curl.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:l/l.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class RegisterModule {
+  @preResolve
+  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+
   @injectable
   BaseOptions getDioBaseOptions() {
     final headers = {
@@ -48,7 +52,7 @@ abstract class RegisterModule {
     return Uri(
       scheme: 'ws',
       host: '192.168.1.71',
-      path: '/chatbot/v1/ws/chat-bot',
+      path: '/chatbot/v1/ws/qa-chatbot',
       port: 8000,
     );
   }
