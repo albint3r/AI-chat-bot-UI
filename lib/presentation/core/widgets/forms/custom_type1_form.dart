@@ -5,7 +5,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 import '../../theme/const_values.dart';
 import '../text/text_title.dart';
 
-
 class CustomType1Form extends StatelessWidget {
   const CustomType1Form({
     required this.formGroup,
@@ -34,7 +33,11 @@ class CustomType1Form extends StatelessWidget {
           children: [
             Expanded(
               child: ListView(
-                children: listFields,
+                children: [
+                  Column(
+                    children: listFields,
+                  ),
+                ],
               ),
             ),
             if (showError) ...[
