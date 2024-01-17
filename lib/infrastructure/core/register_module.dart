@@ -18,10 +18,8 @@ abstract class RegisterModule {
   BaseOptions getDioBaseOptions(
     SharedPref sharedPref,
   ) {
-    final sessionToken = sharedPref.getToken();
     final headers = {
       HttpHeaders.acceptHeader: Headers.jsonContentType,
-      HttpHeaders.authorizationHeader: sessionToken,
     };
     return BaseOptions(
       baseUrl: 'http://192.168.1.71:8000',
@@ -35,7 +33,7 @@ abstract class RegisterModule {
   Iterable<Interceptor> getInterceptors() {
     if (kDebugMode) {
       return [
-        LogInterceptor(logPrint: l.d),
+        LogInterceptor(logPrint: l.i),
         DioInterceptToCurl(),
       ];
     }

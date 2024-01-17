@@ -37,21 +37,12 @@ class AuthFacadeImpl implements IAuthFacade {
       return null;
     }
     // If exist Get User Credential
-    print('*-' * 100);
-    print(sessionToken);
-    print('*-' * 100);
     final authResponse = await _dataSource.logInFromSessionToken(
       sessionToken,
     );
     // Update token for a new one.
     _pref.setToken(authResponse.sessionToken);
     return authResponse.appUser;
-  }
-
-  @override
-  Future<void> saveSessionTokenInPref(String sessionToken) {
-    // TODO: implement saveSessionTokenInPref
-    throw UnimplementedError();
   }
 
   @override
