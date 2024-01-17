@@ -20,13 +20,19 @@ class AuthFacadeImpl implements IAuthFacade {
   SharedPref get pref => _pref;
 
   @override
-  Future<AppUser> logIn(String email, String password) {
-    // TODO: implement logIn
-    throw UnimplementedError();
+  Future<void> logOut() => _pref.deleteToken();
+
+  @override
+  Future<AppUser> logIn(String email, String password) async {
+    final response = await _dataSource.logIn(email, password);
+    return response.appUser;
   }
 
   @override
-  Future<void> logOut() => _pref.deleteToken();
+  Future<AppUser> signIn(String email, String password) async {
+    final response = await _dataSource.signIn(email, password);
+    return response.appUser;
+  }
 
   @override
   Future<AppUser?> loginFromSessionToken() async {
@@ -43,11 +49,5 @@ class AuthFacadeImpl implements IAuthFacade {
     // Update token for a new one.
     _pref.setToken(authResponse.sessionToken);
     return authResponse.appUser;
-  }
-
-  @override
-  Future<AppUser> signIn(String email, String password) {
-    // TODO: implement signIn
-    throw UnimplementedError();
   }
 }

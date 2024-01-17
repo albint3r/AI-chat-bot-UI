@@ -36,5 +36,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         throw "This is the new error: $e";
       }
     });
+    on<_LogInFromForm>((event, emit) async {
+      final formValues = event.formValues;
+      await facade.logIn(formValues['email']!, formValues['password']!);
+    });
+    on<_SignInFromForm>((event, emit) async {
+      final formValues = event.formValues;
+      await facade.signIn(formValues['email']!, formValues['password']!);
+    });
+    on<_LogOut>(
+      (event, emit) => facade.logOut(),
+    );
   }
 }
