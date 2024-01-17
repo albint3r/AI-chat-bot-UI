@@ -27,6 +27,7 @@ class MaterialAppRouterDelegate {
       title: title,
       // Configures the router with the provided appRouter.config().
       routerConfig: appRouter.config(
+        
         navigatorObservers: () => [observer],
       ),
     );

@@ -35,13 +35,18 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
     if (_isUserAuth(resolver)) {
       resolver.next();
     } else {
-      resolver.redirect(const LoginRoute());
+      resolver.redirect(
+        const LoginRoute(),
+      );
     }
   }
 
   /// Validate the user is login or if the user want to nav to log or singing.
   bool _isUserAuth(NavigationResolver resolver) {
     final appUser = _auth.state.appUser;
-    return appUser is AppUser || resolver.route.name == LoginRoute.name;
+    final routeName = resolver.route.name;
+    return appUser is AppUser ||
+        routeName == LoginRoute.name ||
+        routeName == ChatBotRoute.name;
   }
 }
