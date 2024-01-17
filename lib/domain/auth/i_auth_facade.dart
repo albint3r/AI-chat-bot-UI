@@ -1,20 +1,17 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'schemas/auth_response.dart';
+import '../../infrastructure/core/shared_pref.dart';
+import 'app_user.dart';
 
 abstract interface class IAuthFacade {
-  SharedPreferences get pref;
+  SharedPref get pref;
 
-  Future<AuthResponse> loginFromSessionToken(
-    String sessionToken,
-  );
+  Future<AppUser?> loginFromSessionToken();
 
-  Future<AuthResponse> logIn(
+  Future<AppUser> logIn(
     String email,
     String password,
   );
 
-  Future<AuthResponse> signIn(
+  Future<AppUser> signIn(
     String email,
     String password,
   );
@@ -24,6 +21,4 @@ abstract interface class IAuthFacade {
   Future<void> saveSessionTokenInPref(
     String sessionToken,
   );
-
-  Future<void> deleteSessionTokenInPref();
 }

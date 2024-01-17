@@ -22,7 +22,7 @@ class AuthInterceptors extends Interceptor {
     final sessionToken = _pref.getToken();
     // Add Session token to navigation user headers
     if (sessionToken.isNotEmpty) {
-      options.headers[HttpHeaders.authorizationHeader] = 'Bearer $sessionToken';
+      options.headers[HttpHeaders.authorizationHeader] = sessionToken;
     }
     super.onRequest(options, handler);
   }

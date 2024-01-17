@@ -21,7 +21,7 @@ abstract class RegisterModule {
     final sessionToken = sharedPref.getToken();
     final headers = {
       HttpHeaders.acceptHeader: Headers.jsonContentType,
-      HttpHeaders.authorizationHeader: 'Bearer $sessionToken',
+      HttpHeaders.authorizationHeader: sessionToken,
     };
     return BaseOptions(
       baseUrl: 'http://192.168.1.71:8000',

@@ -8,7 +8,10 @@ class SharedPref {
   final String _sessionToken = 'sessionToken';
   final SharedPreferences _pref;
 
-  String getToken() => _pref.getString(_sessionToken) ?? '';
+  String getToken() {
+    final sessionToken = _pref.getString(_sessionToken);
+    return sessionToken is String ? "Bearer $sessionToken" : '';
+  }
 
   Future<void> setToken(String sessionToken) => _pref.setString(
         _sessionToken,
