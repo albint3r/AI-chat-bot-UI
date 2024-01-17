@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../../chatbot/utils/utils.dart';
 import '../../theme/const_values.dart';
 
 class CustomAppTexTField extends StatelessWidget {
@@ -24,21 +25,37 @@ class CustomAppTexTField extends StatelessWidget {
     // because is inside this space.
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final style = theme.textTheme.titleMedium?.copyWith(
-      color: colorScheme.onSecondary,
-    );
-    return SizedBox(
-      height: inputFieldHeightStaticBox,
-      child: ReactiveTextField(
-        formControlName: formControlName,
-        obscureText: obscureText,
-        style: style,
-        decoration: InputDecoration(
-          labelText: formControlName,
-          hintText: hintText,
-          suffixIcon: suffixIcon,
-          labelStyle: style,
-          suffixIconColor: colorScheme.onSecondary,
+    final style = theme.textTheme.bodyMedium;
+
+    return Padding(
+      padding: const EdgeInsets.all(padding),
+      child: SizedBox(
+        width: textFieldWidth,
+        child: ReactiveTextField(
+          formControlName: formControlName,
+          obscureText: obscureText,
+          style: style,
+          decoration: InputDecoration(
+            labelText: formControlName,
+            hintText: hintText,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(right: padding),
+              child: Transform.scale(
+                scale: .8,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: colorScheme.onSurface,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(borderRadius),
+                    ),
+                  ),
+                  child: suffixIcon,
+                ),
+              ),
+            ),
+            labelStyle: style,
+            suffixIconColor: colorScheme.onBackground,
+          ),
         ),
       ),
     );
