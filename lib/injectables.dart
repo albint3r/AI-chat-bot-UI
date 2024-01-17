@@ -11,7 +11,7 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-Future<void> configureDependencies() async {
+Future<void> configureDependencies(String env) async {
   WidgetsFlutterBinding.ensureInitialized();
-  $initGetIt(getIt);
+  await $initGetIt(getIt, environment: env);
 }

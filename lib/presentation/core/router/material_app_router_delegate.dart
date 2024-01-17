@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../theme/theme_config.dart';
 
-
 class MaterialAppRouterDelegate {
   static MaterialApp router(
     String title, {
@@ -11,6 +10,7 @@ class MaterialAppRouterDelegate {
     required ThemeConfig themeConfig,
     required GlobalKey<ScaffoldMessengerState> messengerKey,
     required BuildContext context,
+    required AutoRouterObserver observer,
   }) {
     return MaterialApp.router(
       // Disables the debug banner in release builds.
@@ -26,7 +26,10 @@ class MaterialAppRouterDelegate {
       // Sets the title of the app.
       title: title,
       // Configures the router with the provided appRouter.config().
-      routerConfig: appRouter.config(),
+      routerConfig: appRouter.config(
+        
+        navigatorObservers: () => [observer],
+      ),
     );
   }
 }
