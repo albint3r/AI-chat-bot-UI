@@ -42,21 +42,45 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<_LogInFromForm>((event, emit) async {
       final formValues = event.formValues;
-      await _handleFormEvent(
-        formValues,
-        facade.logIn, // use logIn
-        emit,
-        getIt<AppRouter>(),
-      );
+      try {
+        await _handleFormEvent(
+          formValues,
+          facade.logIn, // use logIn
+          emit,
+          getIt<AppRouter>(),
+        );
+      } catch (e) {
+        emit(
+          state.copyWith(
+            error: AuthError(
+              type: AuthErrorType.logIn,
+              errorMsg: 'Error email or password.',
+            ),
+          ),
+        );
+        throw "Error email or password: $e";
+      }
     });
     on<_SignInFromForm>((event, emit) async {
       final formValues = event.formValues;
-      await _handleFormEvent(
-        formValues,
-        facade.signIn, // use logIn
-        emit,
-        getIt<AppRouter>(),
-      );
+      try {
+        await _handleFormEvent(
+          formValues,
+          facade.signIn, // use logIn
+          emit,
+          getIt<AppRouter>(),
+        );
+      } catch (e) {
+        emit(
+          state.copyWith(
+            error: AuthError(
+              type: AuthErrorType.signUp,
+              errorMsg: 'Unexpected Error. Check Email or password.',
+            ),
+          ),
+        );
+        throw "Unexpected Error. Check Email or password: $e";
+      }
     });
     on<_LogOut>(
       (event, emit) {
@@ -89,5 +113,3 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     router.replaceAll([const DashBoardRoute()]);
   }
 }
-
-

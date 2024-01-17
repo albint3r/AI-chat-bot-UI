@@ -41,7 +41,7 @@ class CustomType1Form extends StatelessWidget {
               ),
             ),
             if (showError) ...[
-              TextTitle.h1(
+              TextTitle.h2(
                 textError ?? '',
                 color: colorScheme.error,
               ),
