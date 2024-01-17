@@ -13,10 +13,11 @@ part 'auth_bloc.freezed.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(SharedPref sharedPref) : super(AuthState.initial()) {
-    on<_ValidateToken>((event, emit) {
+    on<_ValidateToken>((event, emit) async {
       print('*-' * 100);
-      print('Hola munod');
-      print('sharedPref-> $sharedPref');
+      await sharedPref.setToken('This is the new token');
+      final sessionToken = await sharedPref.getToken();
+      print('sessionToken-> $sessionToken');
       print('*-' * 100);
     });
   }
