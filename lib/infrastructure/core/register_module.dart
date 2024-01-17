@@ -15,9 +15,7 @@ abstract class RegisterModule {
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
   @injectable
-  BaseOptions getDioBaseOptions(
-    SharedPref sharedPref,
-  ) {
+  BaseOptions getDioBaseOptions() {
     final headers = {
       HttpHeaders.acceptHeader: Headers.jsonContentType,
     };

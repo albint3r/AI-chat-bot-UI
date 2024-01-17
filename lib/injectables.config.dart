@@ -50,6 +50,7 @@ Future<_i1.GetIt> $initGetIt(
   ) =>
       _i3.AppBlocObserver(_messenger));
   gh.singleton<_i5.AppRouter>(_i5.AppRouter());
+  gh.factory<_i6.BaseOptions>(() => registerModule.getDioBaseOptions());
   gh.factory<Iterable<_i6.Interceptor>>(() => registerModule.getInterceptors());
   await gh.factoryAsync<_i7.SharedPreferences>(
     () => registerModule.prefs,
@@ -61,8 +62,6 @@ Future<_i1.GetIt> $initGetIt(
       () => _i9.SharedPref(gh<_i7.SharedPreferences>()));
   gh.factory<_i10.AuthInterceptors>(
       () => _i10.AuthInterceptors(gh<_i9.SharedPref>()));
-  gh.factory<_i6.BaseOptions>(
-      () => registerModule.getDioBaseOptions(gh<_i9.SharedPref>()));
   gh.singleton<_i6.Dio>(registerModule.getDio(
     gh<_i6.BaseOptions>(),
     gh<Iterable<_i6.Interceptor>>(),
