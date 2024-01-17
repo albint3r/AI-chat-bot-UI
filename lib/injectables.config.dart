@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i6;
+import 'package:dio/dio.dart' as _i5;
 import 'package:flutter/material.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
@@ -26,9 +26,10 @@ import 'infrastructure/auth/auth_interceptors.dart' as _i10;
 import 'infrastructure/chatbot/chatbot_data_source_impl.dart' as _i16;
 import 'infrastructure/chatbot/chatbot_facade_impl.dart' as _i18;
 import 'infrastructure/core/app_bloc_observer.dart' as _i3;
-import 'infrastructure/core/register_module.dart' as _i21;
+import 'infrastructure/core/register_module.dart' as _i22;
 import 'infrastructure/core/shared_pref.dart' as _i9;
-import 'presentation/core/router/app_router.dart' as _i5;
+import 'presentation/core/router/app_router.dart' as _i21;
+import 'presentation/core/router/router_observer.dart' as _i6;
 import 'presentation/core/theme/theme_config.dart' as _i8;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -49,9 +50,9 @@ Future<_i1.GetIt> $initGetIt(
     _,
   ) =>
       _i3.AppBlocObserver(_messenger));
-  gh.singleton<_i5.AppRouter>(_i5.AppRouter());
-  gh.factory<_i6.BaseOptions>(() => registerModule.getDioBaseOptions());
-  gh.factory<Iterable<_i6.Interceptor>>(() => registerModule.getInterceptors());
+  gh.factory<_i5.BaseOptions>(() => registerModule.getDioBaseOptions());
+  gh.factory<Iterable<_i5.Interceptor>>(() => registerModule.getInterceptors());
+  gh.singleton<_i6.RouterObserver>(_i6.RouterObserver());
   await gh.factoryAsync<_i7.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,
@@ -62,19 +63,19 @@ Future<_i1.GetIt> $initGetIt(
       () => _i9.SharedPref(gh<_i7.SharedPreferences>()));
   gh.factory<_i10.AuthInterceptors>(
       () => _i10.AuthInterceptors(gh<_i9.SharedPref>()));
-  gh.singleton<_i6.Dio>(registerModule.getDio(
-    gh<_i6.BaseOptions>(),
-    gh<Iterable<_i6.Interceptor>>(),
+  gh.singleton<_i5.Dio>(registerModule.getDio(
+    gh<_i5.BaseOptions>(),
+    gh<Iterable<_i5.Interceptor>>(),
     gh<_i10.AuthInterceptors>(),
   ));
   gh.factory<_i11.IAuthDataSource>(
-      () => _i12.AuthFacadeDataSourceImpl(gh<_i6.Dio>()));
+      () => _i12.AuthFacadeDataSourceImpl(gh<_i5.Dio>()));
   gh.factory<_i13.IAuthFacade>(() => _i14.AuthFacadeImpl(
         gh<_i9.SharedPref>(),
         gh<_i11.IAuthDataSource>(),
       ));
   gh.factory<_i15.IChatBotDataSource>(() => _i16.ChatBotDataSourceImpl(
-        gh<_i6.Dio>(),
+        gh<_i5.Dio>(),
         gh<Uri>(),
       ));
   gh.factory<_i17.IChatBotFacade>(
@@ -82,7 +83,8 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i19.AuthBloc>(() => _i19.AuthBloc(gh<_i13.IAuthFacade>()));
   gh.factory<_i20.ChatBotBloc>(
       () => _i20.ChatBotBloc(gh<_i17.IChatBotFacade>()));
+  gh.singleton<_i21.AppRouter>(_i21.AppRouter(gh<_i19.AuthBloc>()));
   return getIt;
 }
 
-class _$RegisterModule extends _i21.RegisterModule {}
+class _$RegisterModule extends _i22.RegisterModule {}

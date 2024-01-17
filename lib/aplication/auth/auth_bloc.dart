@@ -17,7 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(IAuthFacade facade) : super(AuthState.initial()) {
     on<_ValidateToken>((event, emit) async {
       try {
-        await facade.pref.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDU1NDY2NTEsImlhdCI6MTcwNTQ2MDI1MSwic3ViIjoiMDc4MmU4ZjktYjRiYy0xMWVlLTlmNDktMDI0MmFjMTQwMDAyIn0.LpWoExRgZJx8qHTe0IVmYWijAYi93Fe0I3R49E-rrOY');
         final appUser = await facade.loginFromSessionToken();
         if (appUser is AppUser) {
           emit(
