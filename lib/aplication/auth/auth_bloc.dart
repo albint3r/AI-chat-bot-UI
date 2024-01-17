@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:l/l.dart';
 
 import '../../domain/auth/app_user.dart';
 import '../../domain/auth/errors/auth_error.dart';
@@ -14,7 +13,6 @@ part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 
 part 'auth_state.dart';
-
 
 // todo: Why lazySingleton work with the Nav Interceptor Auth validator????
 @lazySingleton
@@ -43,28 +41,52 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<_LogInFromForm>((event, emit) async {
       final formValues = event.formValues;
-      final appUser = await facade.logIn(
-        formValues['email']!,
-        formValues['password']!,
+      await _handleFormEvent(
+        formValues,
+        facade.logIn, // use logIn
+        emit,
+        getIt<AppRouter>(),
       );
-      l.i('*-' * 100);
-      l.i(appUser);
-      l.i('*-' * 100);
-      emit(
-        state.copyWith(
-          appUser: appUser,
-          error: null,
-        ),
-      );
-      getIt<AppRouter>().replaceAll([const DashBoardRoute()]);
-      l.i('State->$state');
     });
     on<_SignInFromForm>((event, emit) async {
       final formValues = event.formValues;
-      await facade.signIn(formValues['email']!, formValues['password']!);
+      await _handleFormEvent(
+        formValues,
+        facade.signIn, // use logIn
+        emit,
+        getIt<AppRouter>(),
+      );
     });
     on<_LogOut>(
-      (event, emit) => facade.logOut(),
+      (event, emit) {
+        facade.logOut();
+        emit(
+          state.copyWith(
+            appUser: null,
+          ),
+        );
+      },
     );
   }
+
+  Future<void> _handleFormEvent(
+    Map<String, String> formValues,
+    AuthenticationFunction authenticationFunction,
+    Emitter<AuthState> emit,
+    AppRouter router,
+  ) async {
+    final appUser = await authenticationFunction(
+      formValues['email']!,
+      formValues['password']!,
+    );
+    emit(
+      state.copyWith(
+        appUser: appUser,
+        error: null,
+      ),
+    );
+    router.replaceAll([const DashBoardRoute()]);
+  }
 }
+
+typedef AuthenticationFunction = Future<AppUser> Function(String, String);

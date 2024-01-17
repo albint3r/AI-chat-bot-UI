@@ -25,12 +25,14 @@ class AuthFacadeImpl implements IAuthFacade {
   @override
   Future<AppUser> logIn(String email, String password) async {
     final response = await _dataSource.logIn(email, password);
+    _pref.setToken(response.sessionToken);
     return response.appUser;
   }
 
   @override
   Future<AppUser> signIn(String email, String password) async {
     final response = await _dataSource.signIn(email, password);
+    _pref.setToken(response.sessionToken);
     return response.appUser;
   }
 
