@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:l/l.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../auth/auth_interceptors.dart';
-import 'shared_pref.dart';
 
 @module
 abstract class RegisterModule {
@@ -47,7 +47,8 @@ abstract class RegisterModule {
     final dio = Dio(options);
     dio.interceptors
       ..addAll(interceptors)
-      ..add(auth);
+      ..add(auth)
+      ..add(LogInterceptor());
     return dio;
   }
 
