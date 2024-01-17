@@ -15,7 +15,7 @@ class NameLogo extends StatelessWidget {
       ),
       child: TextTitle.h1(
         'ChatAI',
-        color: colorScheme.onSecondary,
+        color: colorScheme.onPrimary,
       ),
     );
   }

@@ -7,6 +7,7 @@ import '../../aplication/chatbot/chatbot_bloc.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../injectables.dart';
 import '../core/router/app_router.dart';
+import '../core/widgets/app_bars/primary_app_bar.dart';
 import '../core/widgets/text/text_title.dart';
 import 'widgets/body_chatbot.dart';
 
@@ -38,26 +39,10 @@ class ChatBotPage extends StatelessWidget {
             },
           ),
         ],
-        child: SafeArea(
+        child: const SafeArea(
           child: Scaffold(
-            appBar: AppBar(
-              title: TextTitle.h3('Chat Bot'),
-              actions: [
-                TextButton(
-                  onPressed: () => context.read<AuthBloc>().add(
-                        const AuthEvent.logOut(),
-                      ),
-                  child: const Text('LogOut'),
-                ),
-                TextButton(
-                  onPressed: () => context.router.push(
-                    const DashBoardRoute(),
-                  ),
-                  child: const Text('Go Dashboard'),
-                ),
-              ],
-            ),
-            body: const BodyChatBot(),
+            appBar: PrimaryAppBar(),
+            body: BodyChatBot(),
           ),
         ),
       ),
