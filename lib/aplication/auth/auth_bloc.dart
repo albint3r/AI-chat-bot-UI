@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/auth/app_user.dart';
 import '../../domain/auth/errors/auth_error.dart';
 import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/core/types.dart';
 import '../../injectables.dart';
 import '../../presentation/core/router/app_router.dart';
 
@@ -89,4 +90,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 }
 
-typedef AuthenticationFunction = Future<AppUser> Function(String, String);
+
