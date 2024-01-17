@@ -91,7 +91,7 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i23.IChatBotFacade>(
       () => _i24.ChatBotFacadeImpl(gh<_i21.IChatBotDataSource>()));
-  gh.factory<_i25.AuthBloc>(() => _i25.AuthBloc(gh<_i19.IAuthFacade>()));
+  gh.lazySingleton<_i25.AuthBloc>(() => _i25.AuthBloc(gh<_i19.IAuthFacade>()));
   gh.factory<_i26.ChatBotBloc>(
       () => _i26.ChatBotBloc(gh<_i23.IChatBotFacade>()));
   gh.singleton<_i27.AppRouter>(_i27.AppRouter(gh<_i25.AuthBloc>()));

@@ -51,7 +51,7 @@ class ChatBotPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () => context.router.push(
-                    const LoginRoute(),
+                    const DashBoardRoute(),
                   ),
                   child: const Text('Go Dashboard'),
                 ),
