@@ -8,11 +8,12 @@ class SharedPref {
   final String _sessionToken = 'sessionToken';
   final SharedPreferences _pref;
 
-  Future<String> getToken() async {
-    return _pref.getString(_sessionToken) ?? '';
-  }
+  String getToken() => _pref.getString(_sessionToken) ?? '';
 
-  Future<void> setToken(String sessionToken) async {
-    await _pref.setString(_sessionToken, sessionToken);
-  }
+  Future<void> setToken(String sessionToken) => _pref.setString(
+        _sessionToken,
+        sessionToken,
+      );
+
+  Future<void> deleteToken() => _pref.remove(_sessionToken);
 }

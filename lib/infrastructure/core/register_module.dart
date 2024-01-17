@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:l/l.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../auth/auth_interceptors.dart';
+import 'shared_pref.dart';
 
 @module
 abstract class RegisterModule {
@@ -13,9 +15,13 @@ abstract class RegisterModule {
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
   @injectable
-  BaseOptions getDioBaseOptions() {
+  BaseOptions getDioBaseOptions(
+    SharedPref sharedPref,
+  ) {
+    final sessionToken = sharedPref.getToken();
     final headers = {
       HttpHeaders.acceptHeader: Headers.jsonContentType,
+      HttpHeaders.authorizationHeader: 'Bearer $sessionToken',
     };
     return BaseOptions(
       baseUrl: 'http://192.168.1.71:8000',
@@ -40,10 +46,12 @@ abstract class RegisterModule {
   Dio getDio(
     BaseOptions options,
     Iterable<Interceptor> interceptors,
+    AuthInterceptors auth,
   ) {
     final dio = Dio(options);
-    dio.interceptors.addAll(interceptors);
-    // ..add(auth);
+    dio.interceptors
+      ..addAll(interceptors)
+      ..add(auth);
     return dio;
   }
 
