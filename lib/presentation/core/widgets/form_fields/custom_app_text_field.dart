@@ -34,8 +34,9 @@ class CustomAppTexTField extends StatelessWidget {
           formControlName: formControlName,
           obscureText: obscureText,
           style: style,
+          // todo: create a extension to add title text style
           decoration: InputDecoration(
-            labelText: formControlName,
+            labelText: formControlName.toUpperCase(),
             hintText: hintText,
             suffixIcon: Padding(
               padding: const EdgeInsets.only(right: padding),

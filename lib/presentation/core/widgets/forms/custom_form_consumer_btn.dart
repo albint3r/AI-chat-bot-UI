@@ -3,10 +3,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import '../text/text_body.dart';
 
-
-
-class CustomFormConsumeBtn extends StatelessWidget {
-  const CustomFormConsumeBtn({
+class CustomFormConsumerBtn extends StatelessWidget {
+  const CustomFormConsumerBtn({
     required this.text,
     required this.width,
     this.onPress,
@@ -23,7 +21,6 @@ class CustomFormConsumeBtn extends StatelessWidget {
       builder: (_, form, __) {
         return ElevatedButton(
           onPressed: form.valid ? onPress : null,
-          // width: width,
           child: TextBody(text),
         );
       },

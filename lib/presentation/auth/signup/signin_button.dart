@@ -12,7 +12,7 @@ class SignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<SignupBloc>().state;
     final form = state.formGroup;
-    return CustomFormConsumeBtn(
+    return CustomFormConsumerBtn(
       text: 'Signing Account',
       width: 200,
       onPress: () => print('SingIn Event'),

@@ -11,7 +11,7 @@ class LogInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<LoginFormBloc>().state;
     final form = state.formGroup;
-    return CustomFormConsumeBtn(
+    return CustomFormConsumerBtn(
       text: 'Login Account',
       width: 200,
       onPress: () => print('Evento login'),
