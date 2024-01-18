@@ -3,6 +3,7 @@ import 'package:tobe_cv_flutter/presentation/dashboard/widgets/single_chat_item.
 
 import '../../../domain/dashboard/user_chatbot.dart';
 import '../../core/theme/const_values.dart';
+import 'is_active_chat_toggle_switch.dart';
 
 class UserChatBotCard extends StatelessWidget {
   const UserChatBotCard(this.userChatBot);
@@ -22,10 +23,26 @@ class UserChatBotCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SingleChatItem('Name', userChatBot.name),
-              SingleChatItem('Describe', userChatBot.description ?? ''),
-              SingleChatItem('Index', userChatBot.indexName),
-              SingleChatItem('Questions', userChatBot.totalQuestions.toString()),
+              SingleChatItem(
+                'Name',
+                userChatBot.name,
+                const Icon(Icons.folder),
+              ),
+              SingleChatItem(
+                'Describe',
+                userChatBot.description ?? '',
+                const Icon(Icons.description),
+              ),
+              SingleChatItem(
+                'Index',
+                userChatBot.indexName,
+                const Icon(Icons.info),
+              ),
+              SingleChatItem(
+                'Questions',
+                userChatBot.totalQuestions.toString(),
+              ),
+              IsActiveChatToggleSwitch(userChatBot.isActive),
             ],
           ),
         ),

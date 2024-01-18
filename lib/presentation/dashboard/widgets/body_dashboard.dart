@@ -21,7 +21,8 @@ class BodyDashBoard extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     }
-    const lateralBrakingPoint = screenBreakingPoint + lateralContainerWith;
+    const lateralBrakingPoint =
+        screenBreakingPoint + lateralContainerWith + 100;
     return Row(
       children: [
         if (size.width >= lateralBrakingPoint) const LateralMenu(),

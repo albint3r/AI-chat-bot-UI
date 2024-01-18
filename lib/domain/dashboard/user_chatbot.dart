@@ -28,9 +28,9 @@ class UserChatBot with _$UserChatBot {
     @JsonKey(name: 'pinecone_environment')
     required String pineconeEnvironment,
     @JsonKey(name: 'is_live')
-    bool? isLive,
+    required bool isLive,
     @JsonKey(name: 'is_active')
-    bool? isActive,
+    required bool isActive,
   }) = _UserChatBot;
 
   const UserChatBot._();
