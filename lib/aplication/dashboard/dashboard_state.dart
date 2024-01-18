@@ -6,6 +6,7 @@ class DashboardState with _$DashboardState {
     required bool isLoading,
     required List<UserChatBot> userChatBots,
     required bool showForm,
+    required bool isFinished,
     required int index,
     required int totalForms,
     FormGroup? formGroup,
@@ -14,6 +15,7 @@ class DashboardState with _$DashboardState {
   factory DashboardState.initial() => const DashboardState(
         isLoading: true,
         showForm: true,
+        isFinished: false,
         userChatBots: [],
         totalForms: -1,
         index: 0,

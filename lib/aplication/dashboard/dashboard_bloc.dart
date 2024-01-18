@@ -39,6 +39,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       facade.nextQuestion();
       if (facade.isFinished) {
         facade.createNewIndexFromCsv();
+        emit(
+          state.copyWith(
+            isFinished: facade.isFinished,
+          ),
+        );
         return;
       }
       emit(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../../../aplication/dashboard/dashboard_bloc.dart';
+import '../../../core/theme/const_values.dart';
 import '../../../core/widgets/form_fields/custom_app_text_field.dart';
 import '../../../core/widgets/text/text_title.dart';
 import 'back_btn.dart';
@@ -36,12 +37,21 @@ class FormArea extends StatelessWidget {
                   .toList(),
             ),
           ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BackBtn(),
-              NextBtn(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(padding),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BackBtn(
+                  index: dashboard.index,
+                ),
+                NextBtn(
+                  index: dashboard.index,
+                  totalForms: dashboard.totalForms,
+                  isFinished: dashboard.isFinished,
+                ),
+              ],
+            ),
           ),
         ],
       ),
