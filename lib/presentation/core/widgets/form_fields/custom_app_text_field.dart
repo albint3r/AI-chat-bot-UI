@@ -8,7 +8,7 @@ class CustomAppTexTField extends StatelessWidget {
     required this.formControlName,
     this.hintText = '',
     this.obscureText = false,
-    this.suffixIcon,
+    this.suffixIcon = const Icon(Icons.email),
     super.key,
   });
 

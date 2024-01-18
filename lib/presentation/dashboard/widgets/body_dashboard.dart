@@ -3,7 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../core/theme/const_values.dart';
-import 'form_dialog_area/body_form_dialog_area.dart';
+import '../../core/widgets/text/text_title.dart';
+import 'form_dialog_area/back_btn.dart';
+import 'form_dialog_area/dialog_form.dart';
+import 'form_dialog_area/form_area.dart';
+import 'form_dialog_area/next_btn.dart';
 import 'lateral_menu.dart';
 import 'user_chatbot_card.dart';
 
@@ -38,7 +42,10 @@ class BodyDashBoard extends StatelessWidget {
             ),
           ],
         ),
-        if (dashboard.showForm) const BodyFormDialogArea(),
+        if (dashboard.showForm)
+          const DialogForm(
+            child: FormArea(),
+          ),
       ],
     );
   }

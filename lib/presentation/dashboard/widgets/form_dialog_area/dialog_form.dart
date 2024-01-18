@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/const_values.dart';
 
-class BodyFormDialogArea extends StatelessWidget {
-  const BodyFormDialogArea({
+class DialogForm extends StatelessWidget {
+  const DialogForm({
     this.child,
     super.key,
   });
@@ -21,7 +21,7 @@ class BodyFormDialogArea extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               colorScheme.primary,
-              colorScheme.secondary.withOpacity(.9),
+              colorScheme.background.withOpacity(.9),
             ],
           ),
           borderRadius: const BorderRadius.all(

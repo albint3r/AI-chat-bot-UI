@@ -16,14 +16,14 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   final FormArray _formArray = FormArray([
     FormGroup({
-      "name": FormControl(),
-      "description": FormControl(),
+      "name": FormControl<String>(),
+      "description": FormControl<String>(),
     }),
     FormGroup({
-      "index_name": FormControl(),
-      "open_ai_api_key": FormControl(),
-      "pinecone_api_key": FormControl(),
-      "pinecone_environment": FormControl(),
+      "index_name": FormControl<String>(),
+      "open_ai_api_key": FormControl<String>(),
+      "pinecone_api_key": FormControl<String>(),
+      "pinecone_environment": FormControl<String>(),
     }),
   ]);
 
