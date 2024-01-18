@@ -14,36 +14,36 @@ class FormArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dashboard = context.watch<DashboardBloc>().state;
-    return Column(
-      children: [
-        TextTitle.h3('Create New Chat'),
-        SizedBox(
-          width: 200,
-          height: 200,
-          child: ReactiveForm(
-            formGroup: dashboard.formGroup!,
-            child: const Column(
-              children: [
-                CustomAppTexTField(
-                  formControlName: 'name',
-                  suffixIcon: Icon(Icons.folder),
-                ),
-                CustomAppTexTField(
-                  formControlName: 'description',
-                  suffixIcon: Icon(Icons.description),
-                ),
-              ],
+    final formGroup = dashboard.formGroup?.controls;
+    final nameControls = formGroup?.keys.map((nameCtl) => nameCtl).toList();
+    return ReactiveForm(
+      formGroup: dashboard.formGroup!,
+      child: Column(
+        children: [
+          TextTitle.h3('Create New Chat'),
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: Column(
+              children: nameControls!
+                  .map(
+                    (formControlName) => CustomAppTexTField(
+                      formControlName: formControlName,
+                      suffixIcon: const Icon(Icons.check),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BackBtn(),
-            NextBtn(),
-          ],
-        )
-      ],
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BackBtn(),
+              NextBtn(),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
