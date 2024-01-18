@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../core/theme/const_values.dart';
+import 'form_dialog_area/body_form_dialog_area.dart';
 import 'lateral_menu.dart';
 import 'user_chatbot_card.dart';
 
@@ -23,16 +24,21 @@ class BodyDashBoard extends StatelessWidget {
     }
     const lateralBrakingPoint =
         screenBreakingPoint + lateralContainerWith + 100;
-    return Row(
+    return Stack(
       children: [
-        if (size.width >= lateralBrakingPoint) const LateralMenu(),
-        Expanded(
-          child: Column(
-            children: dashboard.userChatBots
-                .map((userChatBot) => UserChatBotCard(userChatBot))
-                .toList(),
-          ),
+        Row(
+          children: [
+            if (size.width >= lateralBrakingPoint) const LateralMenu(),
+            Expanded(
+              child: Column(
+                children: dashboard.userChatBots
+                    .map((userChatBot) => UserChatBotCard(userChatBot))
+                    .toList(),
+              ),
+            ),
+          ],
         ),
+        if (dashboard.showForm) const BodyFormDialogArea(),
       ],
     );
   }

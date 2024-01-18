@@ -30,6 +30,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       emit(
         state.copyWith(
           formGroup: form,
+          showForm: true,
         ),
       );
     });
