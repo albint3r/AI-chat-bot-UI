@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../aplication/dashboard/dashboard_bloc.dart';
-import '../../core/widgets/text/text_body.dart';
-import '../../core/widgets/text/text_title.dart';
+import '../../core/theme/const_values.dart';
 import 'lateral_menu.dart';
+import 'user_chatbot_card.dart';
 
 class BodyDashBoard extends StatelessWidget {
   const BodyDashBoard({this.children = const [], super.key});
@@ -14,30 +14,24 @@ class BodyDashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dashboard = context.watch<DashboardBloc>().state;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+
     final size = MediaQuery.of(context).size;
     if (dashboard.isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
+    const lateralBrakingPoint = screenBreakingPoint + lateralContainerWith;
     return Row(
       children: [
-        const LateralMenu(),
+        if (size.width >= lateralBrakingPoint) const LateralMenu(),
         Expanded(
           child: Column(
             children: dashboard.userChatBots
-                .map(
-                  (userChat) => ListTile(
-                    title: TextTitle.h3(userChat.name),
-                    subtitle: TextBody(userChat.indexName),
-                    trailing: const Icon(Icons.router),
-                  ),
-                )
+                .map((userChatBot) => UserChatBotCard(userChatBot))
                 .toList(),
           ),
-        )
+        ),
       ],
     );
   }
