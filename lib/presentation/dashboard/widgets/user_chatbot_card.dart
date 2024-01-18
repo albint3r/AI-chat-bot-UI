@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tobe_cv_flutter/presentation/dashboard/widgets/single_chat_item.dart';
 
 import '../../../domain/dashboard/user_chatbot.dart';
 import '../../core/theme/const_values.dart';
 import 'is_active_chat_toggle_switch.dart';
+import 'single_chat_item.dart';
 
 class UserChatBotCard extends StatelessWidget {
   const UserChatBotCard(this.userChatBot);
