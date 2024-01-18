@@ -1,6 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../aplication/dashboard/dashboard_bloc.dart';
+import '../../injectables.dart';
 import '../core/widgets/app_bars/primary_app_bar.dart';
 import 'widgets/body_dashboard.dart';
 
@@ -10,10 +13,16 @@ class DashBoardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        appBar: PrimaryAppBar(),
-        body: BodyDashBoard(),
+    return BlocProvider(
+      create: (context) => getIt<DashboardBloc>()
+        ..add(
+          const DashboardEvent.started(),
+        ),
+      child: const SafeArea(
+        child: Scaffold(
+          appBar: PrimaryAppBar(),
+          body: BodyDashBoard(),
+        ),
       ),
     );
   }

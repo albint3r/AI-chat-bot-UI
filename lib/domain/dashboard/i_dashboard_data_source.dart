@@ -1,5 +1,7 @@
+import 'user_chatbot.dart';
+
 abstract interface class IDashBoardDataSource {
-  Future<void> getUserChatBots();
+  Future<List<UserChatBot>> getUserChatBots();
 
   Future<void> createNewIndexFromCsv();
 }

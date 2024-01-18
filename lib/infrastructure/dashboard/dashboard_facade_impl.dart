@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/dashboard/i_dashboard_data_source.dart';
 import '../../domain/dashboard/i_dashboard_facade.dart';
+import '../../domain/dashboard/user_chatbot.dart';
 
 @Injectable(as: IDashBoardFacade)
 class DashboardFacadeImpl implements IDashBoardFacade {
@@ -16,8 +17,5 @@ class DashboardFacadeImpl implements IDashBoardFacade {
   }
 
   @override
-  Future<void> getUserChatBots() {
-    // TODO: implement getUserChatBots
-    throw UnimplementedError();
-  }
+  Future<List<UserChatBot>> getUserChatBots() => _dataSource.getUserChatBots();
 }
