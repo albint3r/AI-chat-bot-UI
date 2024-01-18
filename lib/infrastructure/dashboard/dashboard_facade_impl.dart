@@ -13,6 +13,7 @@ class DashboardFacadeImpl implements IDashBoardFacade {
   final IDashBoardDataSource _dataSource;
 
   int _i = 0; // index group
+  bool _isFinished = false;
 
   final FormArray _formArray = FormArray([
     FormGroup({
@@ -28,21 +29,35 @@ class DashboardFacadeImpl implements IDashBoardFacade {
   ]);
 
   @override
+  int get index => _i;
+
+  @override
+  bool get isFinished => _isFinished;
+
+  @override
   FormGroup get formGroup => _formArray.control('$_i') as FormGroup;
 
   @override
-  int get totalForm => _formArray.controls.length;
+  int get totalForms => _formArray.controls.length;
 
   @override
-  int backQuestion() => _i--;
+  int backQuestion() {
+    // If the index is grater than the minimum you can extract 1.
+    // Otherwise return the last index.
+    if (_i > 0) return _i--;
+    return 0;
+  }
 
   @override
-  int nextQuestion() => _i++;
+  int nextQuestion() {
+    if (_i + 1 < totalForms) return _i++;
+    _isFinished = true;
+    return totalForms;
+  }
 
   @override
-  Future<void> createNewIndexFromCsv() {
-    // TODO: implement createNewIndexFromCsv
-    throw UnimplementedError();
+  Future<void> createNewIndexFromCsv() async {
+    _dataSource.createNewIndexFromCsv();
   }
 
   @override

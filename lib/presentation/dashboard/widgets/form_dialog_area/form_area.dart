@@ -19,11 +19,12 @@ class FormArea extends StatelessWidget {
     return ReactiveForm(
       formGroup: dashboard.formGroup!,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextTitle.h3('Create New Chat'),
           SizedBox(
-            width: 200,
-            height: 200,
+            width: 400,
+            height: 400,
             child: Column(
               children: nameControls!
                   .map(
@@ -41,7 +42,7 @@ class FormArea extends StatelessWidget {
               BackBtn(),
               NextBtn(),
             ],
-          )
+          ),
         ],
       ),
     );

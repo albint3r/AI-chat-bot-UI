@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../../core/widgets/text/text_body.dart';
 
 class BackBtn extends StatelessWidget {
@@ -8,7 +10,9 @@ class BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => print('Back'),
+      onPressed: () => context.read<DashboardBloc>().add(
+            const DashboardEvent.backQuestion(),
+          ),
       child: const TextBody('Back'),
     );
   }

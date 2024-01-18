@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:l/l.dart';
 
 import '../../domain/core/types.dart';
 import '../../domain/dashboard/i_dashboard_data_source.dart';
@@ -12,9 +13,10 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
   final Dio _dio;
 
   @override
-  Future<void> createNewIndexFromCsv() {
-    // TODO: implement createNewIndexFromCsv
-    throw UnimplementedError();
+  Future<void> createNewIndexFromCsv() async {
+    l.i('*-' * 100);
+    l.i('createNewIndexFromCsv');
+    l.i('*-' * 100);
   }
 
   @override

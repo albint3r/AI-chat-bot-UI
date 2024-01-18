@@ -4,8 +4,10 @@ part of 'dashboard_bloc.dart';
 class DashboardState with _$DashboardState {
   const factory DashboardState({
     required bool isLoading,
-    required bool showForm,
     required List<UserChatBot> userChatBots,
+    required bool showForm,
+    required int index,
+    required int totalForms,
     FormGroup? formGroup,
   }) = _DashboardState;
 
@@ -13,5 +15,7 @@ class DashboardState with _$DashboardState {
         isLoading: true,
         showForm: true,
         userChatBots: [],
+        totalForms: -1,
+        index: 0,
       );
 }

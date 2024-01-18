@@ -22,6 +22,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         state.copyWith(
           isLoading: false,
           formGroup: form,
+          index: facade.index,
+          totalForms: facade.totalForms,
           userChatBots: userChatBots,
         ),
       );
@@ -30,6 +32,30 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       emit(
         state.copyWith(
           showForm: true,
+        ),
+      );
+    });
+    on<_NextQuestion>((event, emit) async {
+      facade.nextQuestion();
+      if (facade.isFinished) {
+        facade.createNewIndexFromCsv();
+        return;
+      }
+      emit(
+        state.copyWith(
+          index: facade.index,
+          totalForms: facade.totalForms,
+          formGroup: facade.formGroup,
+        ),
+      );
+    });
+    on<_BackQuestion>((event, emit) async {
+      facade.backQuestion();
+      emit(
+        state.copyWith(
+          index: facade.index,
+          totalForms: facade.totalForms,
+          formGroup: facade.formGroup,
         ),
       );
     });

@@ -3,11 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../core/theme/const_values.dart';
-import '../../core/widgets/text/text_title.dart';
-import 'form_dialog_area/back_btn.dart';
 import 'form_dialog_area/dialog_form.dart';
 import 'form_dialog_area/form_area.dart';
-import 'form_dialog_area/next_btn.dart';
 import 'lateral_menu.dart';
 import 'user_chatbot_card.dart';
 

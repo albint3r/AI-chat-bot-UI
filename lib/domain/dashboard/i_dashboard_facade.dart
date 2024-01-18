@@ -5,7 +5,11 @@ import 'user_chatbot.dart';
 abstract interface class IDashBoardFacade {
   FormGroup get formGroup;
 
-  int get totalForm;
+  int get totalForms;
+
+  int get index;
+
+  bool get isFinished;
 
   Future<List<UserChatBot>> getUserChatBots();
 
