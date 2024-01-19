@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:l/l.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/models/models.dart';
 
@@ -62,7 +63,6 @@ class DashboardFacadeImpl implements IDashBoardFacade {
     }),
     FormGroup({
       "file": FormControl<String>(
-        // disabled: true,
         validators: [
           Validators.required,
           Validators.maxLength(255),
@@ -100,7 +100,7 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   @override
   Future<void> createNewIndexFromCsv() async {
-    _dataSource.createNewIndexFromCsv();
+    _dataSource.createNewIndexFromCsv(_fileBytes!);
   }
 
   @override

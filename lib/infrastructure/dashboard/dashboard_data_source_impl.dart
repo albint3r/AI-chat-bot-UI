@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:l/l.dart';
@@ -13,10 +15,35 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
   final Dio _dio;
 
   @override
-  Future<void> createNewIndexFromCsv() async {
+  Future<void> createNewIndexFromCsv(Uint8List fileBytes) async {
     l.i('*-' * 100);
-    l.i('createNewIndexFromCsv');
+    l.i('createNewIndexFromCsv: -> $fileBytes');
+    try {
+      // Realizar la solicitud POST con Dio
+      final response = await _dio.post(
+        '/data-manager/v1/upload-file/test/',
+        data: FormData.fromMap({
+          'file': MultipartFile.fromBytes(
+            fileBytes,
+            filename:
+                'nombre_del_archivo.csv', // Puedes personalizar el nombre del archivo aquí
+          ),
+        }),
+      );
+
+      // Manejar la respuesta
+      print('Respuesta del servidor: ${response.data}');
+    } catch (e) {
+      // Manejar errores
+      print('Error al subir el archivo: $e');
+    }
     l.i('*-' * 100);
+    // final formData = FormData.fromMap({
+    //   'name': 'dio',
+    //   'date': DateTime.now().toIso8601String(),
+    //   'file': await MultipartFile.fromFile('./text.txt', filename: 'upload.txt'),
+    // });
+    // final response = await dio.post('/info', data: formData);
   }
 
   @override
