@@ -5,9 +5,15 @@ import '../../../core/theme/const_values.dart';
 class DialogForm extends StatelessWidget {
   const DialogForm({
     this.child,
+    this.minHeight = 400,
+    this.maxWidth = 700,
+    this.minWidth = 600,
     super.key,
   });
 
+  final double minHeight;
+  final double maxWidth;
+  final double minWidth;
   final Widget? child;
 
   @override
@@ -31,9 +37,9 @@ class DialogForm extends StatelessWidget {
         // Todo: I can change this values latter??
         constraints: BoxConstraints(
           maxHeight: size.height * .80,
-          minHeight: 400,
-          maxWidth: 700,
-          minWidth: 600,
+          minHeight: minHeight,
+          maxWidth: maxWidth,
+          minWidth: minWidth,
         ),
         child: child,
       ),
