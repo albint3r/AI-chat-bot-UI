@@ -57,12 +57,15 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
     String chatBotId,
   ) async {
     const path = '/data-manager/v1/user/chat-bots/active/';
-    final response = _dio.put(
+    final response = await _dio.put(
       path,
       data: {
         "chatbot_id": chatBotId,
         "is_active": isActive,
       },
     );
+    if (response.statusCode != 200) {
+      throw Exception('Fatal Error With the Update Activity State.');
+    }
   }
 }
