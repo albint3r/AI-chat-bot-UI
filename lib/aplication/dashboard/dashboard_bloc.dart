@@ -81,12 +81,12 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         );
         await facade.updateChatBotActiveStatus(event.userChatBot);
         // Only Change the new Item for the Old to update the list without make a call to the API.
-        final List<UserChatBot> newChats = List.from(state.userChatBots);
-        newChats[event.chatIndex] = event.userChatBot;
+        final List<UserChatBot> newUserChatBots = List.from(state.userChatBots);
+        newUserChatBots[event.chatIndex] = event.userChatBot;
         emit(
           state.copyWith(
             isToggling: false,
-            userChatBots: newChats,
+            userChatBots: newUserChatBots,
           ),
         );
       } catch (e) {
