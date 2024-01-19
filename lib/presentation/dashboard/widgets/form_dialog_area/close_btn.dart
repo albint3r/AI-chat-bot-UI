@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../aplication/dashboard/dashboard_bloc.dart';
+import '../../../core/theme/const_values.dart';
 import '../../../core/widgets/text/text_body.dart';
 
 class CloseBtn extends StatelessWidget {
@@ -15,8 +16,8 @@ class CloseBtn extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(
-            width: 50,
-            height: 40,
+            width: elevatedSmallButtonWidth,
+            height: elevatedButtonHeight,
             child: ElevatedButton(
               onPressed: () => context.read<DashboardBloc>().add(
                     const DashboardEvent.closeFormDialog(),
