@@ -20,6 +20,9 @@ class BottomButtonsRow extends StatelessWidget {
         children: [
           BackBtn(
             index: dashboard.index,
+            onPressed: () => context.read<DashboardBloc>().add(
+                  const DashboardEvent.backQuestion(),
+                ),
           ),
           ReactiveFormConsumer(
             builder: (_, formGroup, __) {
@@ -27,6 +30,9 @@ class BottomButtonsRow extends StatelessWidget {
                 index: dashboard.index,
                 totalForms: dashboard.totalForms,
                 isFinished: dashboard.isFinished || !formGroup.valid,
+                onPressed: () => context.read<DashboardBloc>().add(
+                      const DashboardEvent.nextQuestion(),
+                    ),
               );
             },
           ),
