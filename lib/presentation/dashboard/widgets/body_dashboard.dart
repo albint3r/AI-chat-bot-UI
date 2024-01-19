@@ -7,6 +7,7 @@ import '../../core/theme/const_values.dart';
 import '../../core/widgets/text/text_title.dart';
 import 'form_dialog_area/dialog_form.dart';
 import 'form_dialog_area/form_area.dart';
+import 'form_dialog_area/loading_indicator.dart';
 import 'lateral_menu.dart';
 import 'user_chatbot_card.dart';
 
@@ -41,17 +42,11 @@ class BodyDashBoard extends StatelessWidget {
             ),
           ],
         ),
+        // Create
         if (dashboard.showForm)
           DialogForm(
             child: dashboard.isFinished
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircularProgressIndicator(),
-                      const Gap(10),
-                      TextTitle.h3('Creating ChatBot'),
-                    ],
-                  )
+                ? const LoadingIndicator()
                 : const FormArea(),
           ),
       ],

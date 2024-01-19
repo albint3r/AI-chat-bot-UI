@@ -7,6 +7,7 @@ import '../../../core/theme/const_values.dart';
 import '../../../core/widgets/form_fields/custom_app_text_field.dart';
 import '../../../core/widgets/text/text_title.dart';
 import 'back_btn.dart';
+import 'bottom_buttons_row.dart';
 import 'next_btn.dart';
 
 class FormArea extends StatelessWidget {
@@ -38,26 +39,7 @@ class FormArea extends StatelessWidget {
                   .toList(),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(padding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BackBtn(
-                  index: dashboard.index,
-                ),
-                ReactiveFormConsumer(
-                  builder: (_, formGroup, __) {
-                    return NextBtn(
-                      index: dashboard.index,
-                      totalForms: dashboard.totalForms,
-                      isFinished: dashboard.isFinished || !formGroup.valid,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
+          const BottomButtonsRow(),
         ],
       ),
     );
