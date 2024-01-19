@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:tobe_cv_flutter/presentation/dashboard/widgets/form_dialog_area/steps_questions_indicator_bar.dart';
 
 import '../../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../../core/widgets/form_fields/custom_app_text_field.dart';
@@ -24,6 +25,10 @@ class FormArea extends StatelessWidget {
         children: [
           const CloseBtn(),
           TextTitle.h3('Create New Chat'),
+          StepsQuestionsIndicatorBar(
+            index: dashboard.index,
+            steps: dashboard.totalForms,
+          ),
           Expanded(
             child: SizedBox(
               width: 400,
