@@ -6,9 +6,13 @@ import 'is_active_chat_toggle_switch.dart';
 import 'single_chat_item.dart';
 
 class UserChatBotCard extends StatelessWidget {
-  const UserChatBotCard(this.userChatBot);
+  const UserChatBotCard(
+    this.userChatBot, {
+    required this.index,
+  });
 
   final UserChatBot userChatBot;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,10 @@ class UserChatBotCard extends StatelessWidget {
                 'Questions',
                 userChatBot.totalQuestions.toString(),
               ),
-              IsActiveChatToggleSwitch(userChatBot.isActive),
+              IsActiveChatToggleSwitch(
+                userChatBot,
+                index: index,
+              ),
             ],
           ),
         ),

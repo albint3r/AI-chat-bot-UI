@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 
 import '../../../aplication/dashboard/dashboard_bloc.dart';
 import '../../core/theme/const_values.dart';
-import '../../core/widgets/text/text_title.dart';
 import 'form_dialog_area/dialog_form.dart';
 import 'form_dialog_area/form_area.dart';
 import 'form_dialog_area/loading_indicator.dart';
@@ -36,7 +34,14 @@ class BodyDashBoard extends StatelessWidget {
             Expanded(
               child: Column(
                 children: dashboard.userChatBots
-                    .map((userChatBot) => UserChatBotCard(userChatBot))
+                    .asMap()
+                    .entries
+                    .map(
+                      (userChatBot) => UserChatBotCard(
+                        userChatBot.value,
+                        index: userChatBot.key, // the key is the index
+                      ),
+                    )
                     .toList(),
               ),
             ),
