@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
-import 'package:l/l.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../domain/dashboard/i_dashboard_data_source.dart';
@@ -80,6 +79,14 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   @override
   int get totalForms => _formArray.controls.length;
+
+  @override
+  void resetForm() {
+    _formArray.reset();
+    _i = 0;
+    _isFinished = false;
+    _fileBytes = null;
+  }
 
   @override
   int backQuestion() {

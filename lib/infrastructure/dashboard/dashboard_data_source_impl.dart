@@ -48,6 +48,6 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
     if (results.isNotEmpty) {
       return results;
     }
-    throw Exception('No fetched user chat bots.');
+    return <UserChatBot>[];
   }
 }

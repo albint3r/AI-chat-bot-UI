@@ -40,16 +40,12 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     });
     on<_NextQuestion>((event, emit) async {
       facade.nextQuestion();
+      // This happened when the user finished the form
       if (facade.isFinished) {
-        facade.createNewIndexFromCsv();
-        emit(
-          state.copyWith(
-            isFinished: facade.isFinished,
-          ),
-        );
-        // todo: create reset form
+        await _finishProcess(emit, facade);
         return;
       }
+      // Update Form values in UI
       emit(
         state.copyWith(
           index: facade.index,
@@ -68,5 +64,28 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         ),
       );
     });
+  }
+
+  Future<void> _finishProcess(
+      Emitter<DashboardState> emit, IDashBoardFacade facade) async {
+    emit(
+      state.copyWith(
+        isFinished: facade.isFinished,
+      ),
+    );
+    await facade.createNewIndexFromCsv();
+    facade.resetForm();
+    final userChatBots = await facade.getUserChatBots();
+    emit(
+      state.copyWith(
+        formGroup: facade.formGroup,
+        index: facade.totalForms,
+        totalForms: facade.totalForms,
+        showForm: false,
+        isLoading: false,
+        isFinished: false,
+        userChatBots: userChatBots,
+      ),
+    );
   }
 }

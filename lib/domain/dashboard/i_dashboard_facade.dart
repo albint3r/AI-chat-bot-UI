@@ -21,4 +21,6 @@ abstract interface class IDashBoardFacade {
   int nextQuestion();
 
   int backQuestion();
+
+  void resetForm();
 }
