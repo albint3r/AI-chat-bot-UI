@@ -30,6 +30,7 @@ class FormArea extends StatelessWidget {
               children: nameControls!
                   .map(
                     (formControlName) => CustomAppTexTField(
+                      key: Key(formControlName),
                       formControlName: formControlName,
                       suffixIcon: const Icon(Icons.check),
                     ),
@@ -45,10 +46,14 @@ class FormArea extends StatelessWidget {
                 BackBtn(
                   index: dashboard.index,
                 ),
-                NextBtn(
-                  index: dashboard.index,
-                  totalForms: dashboard.totalForms,
-                  isFinished: dashboard.isFinished,
+                ReactiveFormConsumer(
+                  builder: (_, formGroup, __) {
+                    return NextBtn(
+                      index: dashboard.index,
+                      totalForms: dashboard.totalForms,
+                      isFinished: dashboard.isFinished || !formGroup.valid,
+                    );
+                  },
                 ),
               ],
             ),
