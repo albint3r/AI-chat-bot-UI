@@ -24,7 +24,7 @@ class SingleChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final width = size.width;
-    const breakingPoint = 900;
+    const breakingPoint = screenBreakingPoint + 200;
 
     return Expanded(
       child: SizedBox(

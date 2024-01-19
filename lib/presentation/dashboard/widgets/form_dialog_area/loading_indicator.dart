@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../core/theme/const_values.dart';
 import '../../../core/widgets/text/text_title.dart';
 
 class LoadingIndicator extends StatelessWidget {
@@ -12,7 +13,7 @@ class LoadingIndicator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const CircularProgressIndicator(),
-        const Gap(10),
+        const Gap(padding * 2),
         TextTitle.h3('Creating ChatBot'),
       ],
     );

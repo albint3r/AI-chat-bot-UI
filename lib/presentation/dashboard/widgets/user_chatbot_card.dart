@@ -19,7 +19,7 @@ class UserChatBotCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(padding),
         child: SizedBox(
-          height: 50,
+          height: elevatedButtonHeight,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
