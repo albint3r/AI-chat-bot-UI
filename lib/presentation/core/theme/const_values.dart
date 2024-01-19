@@ -8,6 +8,8 @@ const screenBreakingPoint = 700;
 const textFieldWidth = 700.0;
 const inputFieldHeightStaticBox = 30.00;
 const elevatedButtonHeight = 40.00;
+const elevatedSmallButtonWidth = 50.00;
+const sizeFormBtn = 200.0;
 // Font Size:
 const h1 = 25.0;
 const h2 = 20.0;

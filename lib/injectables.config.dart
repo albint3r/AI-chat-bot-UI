@@ -14,14 +14,17 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i12;
 
-import 'aplication/auth/auth_bloc.dart' as _i25;
-import 'aplication/chatbot/chatbot_bloc.dart' as _i26;
+import 'aplication/auth/auth_bloc.dart' as _i29;
+import 'aplication/chatbot/chatbot_bloc.dart' as _i30;
+import 'aplication/dashboard/dashboard_bloc.dart' as _i31;
 import 'aplication/login/login_form_bloc.dart' as _i10;
 import 'aplication/signin/signup_bloc.dart' as _i13;
 import 'domain/auth/i_auth_data_source.dart' as _i17;
 import 'domain/auth/i_auth_facade.dart' as _i19;
 import 'domain/chatbot/i_chatbot_data_source.dart' as _i21;
 import 'domain/chatbot/i_chatbot_facade.dart' as _i23;
+import 'domain/dashboard/i_dashboard_data_source.dart' as _i25;
+import 'domain/dashboard/i_dashboard_facade.dart' as _i27;
 import 'domain/login/i_login_form_facade.dart' as _i6;
 import 'domain/signup/i_signup_facade.dart' as _i8;
 import 'infrastructure/auth/auth_facade_data_source_impl.dart' as _i18;
@@ -30,11 +33,13 @@ import 'infrastructure/auth/auth_interceptors.dart' as _i16;
 import 'infrastructure/chatbot/chatbot_data_source_impl.dart' as _i22;
 import 'infrastructure/chatbot/chatbot_facade_impl.dart' as _i24;
 import 'infrastructure/core/app_bloc_observer.dart' as _i3;
-import 'infrastructure/core/register_module.dart' as _i28;
+import 'infrastructure/core/register_module.dart' as _i33;
 import 'infrastructure/core/shared_pref.dart' as _i15;
+import 'infrastructure/dashboard/dashboard_data_source_impl.dart' as _i26;
+import 'infrastructure/dashboard/dashboard_facade_impl.dart' as _i28;
 import 'infrastructure/login/login_form_facade.dart' as _i7;
 import 'infrastructure/signup/signup_facade_impl.dart' as _i9;
-import 'presentation/core/router/app_router.dart' as _i27;
+import 'presentation/core/router/app_router.dart' as _i32;
 import 'presentation/core/router/router_observer.dart' as _i11;
 import 'presentation/core/theme/theme_config.dart' as _i14;
 
@@ -91,11 +96,17 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i23.IChatBotFacade>(
       () => _i24.ChatBotFacadeImpl(gh<_i21.IChatBotDataSource>()));
-  gh.lazySingleton<_i25.AuthBloc>(() => _i25.AuthBloc(gh<_i19.IAuthFacade>()));
-  gh.factory<_i26.ChatBotBloc>(
-      () => _i26.ChatBotBloc(gh<_i23.IChatBotFacade>()));
-  gh.singleton<_i27.AppRouter>(_i27.AppRouter(gh<_i25.AuthBloc>()));
+  gh.factory<_i25.IDashBoardDataSource>(
+      () => _i26.DashboardDataSourceImpl(gh<_i5.Dio>()));
+  gh.factory<_i27.IDashBoardFacade>(
+      () => _i28.DashboardFacadeImpl(gh<_i25.IDashBoardDataSource>()));
+  gh.lazySingleton<_i29.AuthBloc>(() => _i29.AuthBloc(gh<_i19.IAuthFacade>()));
+  gh.factory<_i30.ChatBotBloc>(
+      () => _i30.ChatBotBloc(gh<_i23.IChatBotFacade>()));
+  gh.factory<_i31.DashboardBloc>(
+      () => _i31.DashboardBloc(gh<_i27.IDashBoardFacade>()));
+  gh.singleton<_i32.AppRouter>(_i32.AppRouter(gh<_i29.AuthBloc>()));
   return getIt;
 }
 
-class _$RegisterModule extends _i28.RegisterModule {}
+class _$RegisterModule extends _i33.RegisterModule {}

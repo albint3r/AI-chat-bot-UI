@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class TextBody extends StatelessWidget {
-  const TextBody(this.text, {
+  const TextBody(
+    this.text, {
     this.color,
     this.fontSize,
     this.textAlign,
+    this.maxLines = 15,
   });
 
   final String text;
   final Color? color;
   final double? fontSize;
   final TextAlign? textAlign;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,8 @@ class TextBody extends StatelessWidget {
         color: color,
         fontSize: fontSize,
       ),
-      maxLines: 15,
+      maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
