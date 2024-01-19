@@ -1,11 +1,9 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:l/l.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:reactive_forms/src/models/models.dart';
 
 import '../../domain/dashboard/i_dashboard_data_source.dart';
 import '../../domain/dashboard/i_dashboard_facade.dart';
@@ -100,7 +98,25 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   @override
   Future<void> createNewIndexFromCsv() async {
-    _dataSource.createNewIndexFromCsv(_fileBytes!);
+    final List<AbstractControl> controls = _formArray.controls;
+    final queryParams = <String, String>{};
+    for (final formGroup in controls) {
+      if (formGroup is FormGroup) {
+        // Unfold all the FormGroups and add to a final Dict
+        queryParams.addAll(
+          formGroup.rawValue.map((key, value) {
+            final stringValue = value?.toString() ?? '';
+            return MapEntry(key, stringValue);
+          }),
+        );
+      }
+    }
+    // Remove File for the final query. Remember the file would be send it as bytes.
+    queryParams.remove('file');
+    await _dataSource.createNewIndexFromCsv(
+      _fileBytes!,
+      queryParams,
+    );
   }
 
   @override
