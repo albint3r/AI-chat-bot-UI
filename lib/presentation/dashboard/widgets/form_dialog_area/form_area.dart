@@ -25,15 +25,23 @@ class FormArea extends StatelessWidget {
             width: 400,
             height: 400,
             child: Column(
-              children: nameControls!
-                  .map(
-                    (formControlName) => CustomAppTexTField(
-                      key: Key(formControlName),
-                      formControlName: formControlName,
-                      suffixIcon: const Icon(Icons.check),
-                    ),
-                  )
-                  .toList(),
+              children: [
+                ...nameControls!.map(
+                  (formControlName) => CustomAppTexTField(
+                    key: Key(formControlName),
+                    formControlName: formControlName,
+                    suffixIcon: const Icon(Icons.check),
+                  ),
+                ),
+                // Add the Excel Question
+                if (dashboard.index + 1 == dashboard.totalForms)
+                  ElevatedButton(
+                    onPressed: () => context.read<DashboardBloc>().add(
+                          const DashboardEvent.addCsvFile(),
+                        ),
+                    child: TextTitle.h2('Upload CSV File'),
+                  ),
+              ],
             ),
           ),
           const BottomButtonsRow(),

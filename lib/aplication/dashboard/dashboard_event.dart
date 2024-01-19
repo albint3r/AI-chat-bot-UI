@@ -6,6 +6,8 @@ class DashboardEvent with _$DashboardEvent {
 
   const factory DashboardEvent.createNewChatBot() = _CreateNewChatBot;
 
+  const factory DashboardEvent.addCsvFile() = _AddCsvFile;
+
   const factory DashboardEvent.nextQuestion() = _NextQuestion;
 
   const factory DashboardEvent.backQuestion() = _BackQuestion;

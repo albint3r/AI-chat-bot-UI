@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/models/models.dart';
@@ -14,6 +18,7 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   int _i = 0; // index group
   bool _isFinished = false;
+  Uint8List? _fileBytes;
 
   final FormArray _formArray = FormArray([
     FormGroup({
@@ -49,6 +54,15 @@ class DashboardFacadeImpl implements IDashBoardFacade {
         ],
       ),
       "pinecone_environment": FormControl<String>(
+        validators: [
+          Validators.required,
+          Validators.maxLength(255),
+        ],
+      ),
+    }),
+    FormGroup({
+      "file": FormControl<String>(
+        // disabled: true,
         validators: [
           Validators.required,
           Validators.maxLength(255),
@@ -91,4 +105,18 @@ class DashboardFacadeImpl implements IDashBoardFacade {
 
   @override
   Future<List<UserChatBot>> getUserChatBots() => _dataSource.getUserChatBots();
+
+  @override
+  Future<void> getFilePicker() async {
+    // Because is Picker web I use this solution from the documentation:
+    //https://github.com/miguelpruivo/flutter_file_picker/wiki/FAQ
+    final FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result is FilePickerResult && result.files.isNotEmpty) {
+      // Add the values to the last form to validate the information.
+      final fileBytes = result.files.first.bytes;
+      final fileName = result.files.first.name;
+      formGroup.control('file').value = fileName;
+      _fileBytes = fileBytes;
+    }
+  }
 }

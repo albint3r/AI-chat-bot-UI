@@ -35,6 +35,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         ),
       );
     });
+    on<_AddCsvFile>((event, emit) async {
+      await facade.getFilePicker();
+    });
     on<_NextQuestion>((event, emit) async {
       facade.nextQuestion();
       if (facade.isFinished) {

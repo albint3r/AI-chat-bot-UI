@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'user_chatbot.dart';
@@ -14,6 +15,8 @@ abstract interface class IDashBoardFacade {
   Future<List<UserChatBot>> getUserChatBots();
 
   Future<void> createNewIndexFromCsv();
+
+  Future<void> getFilePicker();
 
   int nextQuestion();
 
