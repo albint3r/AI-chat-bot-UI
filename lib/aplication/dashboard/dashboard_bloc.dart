@@ -64,10 +64,19 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         ),
       );
     });
+    on<_CloseFormDialog>((event, emit) async {
+      emit(
+        state.copyWith(
+          showForm: false,
+        ),
+      );
+    });
   }
 
   Future<void> _finishProcess(
-      Emitter<DashboardState> emit, IDashBoardFacade facade) async {
+    Emitter<DashboardState> emit,
+    IDashBoardFacade facade,
+  ) async {
     emit(
       state.copyWith(
         isFinished: facade.isFinished,

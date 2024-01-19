@@ -14,7 +14,7 @@ class DashboardState with _$DashboardState {
 
   factory DashboardState.initial() => const DashboardState(
         isLoading: true,
-        showForm: false,
+        showForm: true,
         isFinished: false,
         userChatBots: [],
         totalForms: -1,

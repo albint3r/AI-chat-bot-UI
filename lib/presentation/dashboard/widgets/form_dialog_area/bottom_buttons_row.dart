@@ -14,7 +14,7 @@ class BottomButtonsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final dashboard = context.watch<DashboardBloc>().state;
     return Padding(
-      padding: const EdgeInsets.all(padding),
+      padding: const EdgeInsets.all(padding * 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

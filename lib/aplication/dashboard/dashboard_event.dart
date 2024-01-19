@@ -11,4 +11,6 @@ class DashboardEvent with _$DashboardEvent {
   const factory DashboardEvent.nextQuestion() = _NextQuestion;
 
   const factory DashboardEvent.backQuestion() = _BackQuestion;
+
+  const factory DashboardEvent.closeFormDialog() = _CloseFormDialog;
 }
