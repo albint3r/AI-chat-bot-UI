@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:l/l.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../domain/dashboard/i_dashboard_facade.dart';
@@ -70,6 +71,33 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
           showForm: false,
         ),
       );
+    });
+    on<_UpdateChatActiveState>((event, emit) async {
+      try {
+        emit(
+          state.copyWith(
+            isToggling: true,
+          ),
+        );
+        await facade.updateChatBotActiveStatus(event.userChatBot);
+        // Only Change the new Item for the Old to update the list without make a call to the API.
+        final List<UserChatBot> newUserChatBots = List.from(state.userChatBots);
+        newUserChatBots[event.chatIndex] = event.userChatBot;
+        emit(
+          state.copyWith(
+            isToggling: false,
+            userChatBots: newUserChatBots,
+          ),
+        );
+      } catch (e) {
+        l.i('Fatal Error: $e');
+        emit(
+          state.copyWith(
+            userChatBots: [],
+            isLoading: false,
+          ),
+        );
+      }
     });
   }
 

@@ -13,4 +13,9 @@ class DashboardEvent with _$DashboardEvent {
   const factory DashboardEvent.backQuestion() = _BackQuestion;
 
   const factory DashboardEvent.closeFormDialog() = _CloseFormDialog;
+
+  const factory DashboardEvent.updateChatActiveState(
+    UserChatBot userChatBot,
+    int chatIndex,
+  ) = _UpdateChatActiveState;
 }

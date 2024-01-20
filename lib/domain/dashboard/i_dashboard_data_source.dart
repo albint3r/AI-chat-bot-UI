@@ -9,4 +9,9 @@ abstract interface class IDashBoardDataSource {
     Uint8List fileBytes,
     Map<String, String> queryParams,
   );
+
+  Future<void> updateChatBotActiveStatus(
+    bool isActive,
+    String chatBotId,
+  );
 }

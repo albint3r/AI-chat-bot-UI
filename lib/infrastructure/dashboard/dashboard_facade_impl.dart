@@ -127,7 +127,8 @@ class DashboardFacadeImpl implements IDashBoardFacade {
   }
 
   @override
-  Future<List<UserChatBot>> getUserChatBots() => _dataSource.getUserChatBots();
+  Future<List<UserChatBot>> getUserChatBots() async =>
+      await _dataSource.getUserChatBots();
 
   @override
   Future<void> getFilePicker() async {
@@ -141,5 +142,13 @@ class DashboardFacadeImpl implements IDashBoardFacade {
       formGroup.control('file').value = fileName;
       _fileBytes = fileBytes;
     }
+  }
+
+  @override
+  Future<void> updateChatBotActiveStatus(UserChatBot userChatBot) async {
+    await _dataSource.updateChatBotActiveStatus(
+      userChatBot.isActive,
+      userChatBot.chatbotId,
+    );
   }
 }
