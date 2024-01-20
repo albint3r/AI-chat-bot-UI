@@ -19,12 +19,6 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions ??
           [
             TextButton(
-              onPressed: () => context.read<AuthBloc>().add(
-                    const AuthEvent.logOut(),
-                  ),
-              child: const TextBody('LogOut'),
-            ),
-            TextButton(
               onPressed: () => context.router.push(
                 const DashBoardRoute(),
               ),

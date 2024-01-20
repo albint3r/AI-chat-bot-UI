@@ -84,12 +84,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<_LogOut>(
       (event, emit) {
+        emit(
+          state.copyWith(
+            isLoading: true,
+          ),
+        );
         facade.logOut();
         emit(
           state.copyWith(
             appUser: null,
+            isLoading: false,
           ),
         );
+        // Navigate to the Home Page
+        final router = getIt<AppRouter>();
+        router.replaceAll([
+          const ChatBotRoute(),
+        ]);
       },
     );
   }
