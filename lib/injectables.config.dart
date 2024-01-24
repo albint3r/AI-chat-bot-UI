@@ -101,8 +101,14 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i27.IDashBoardFacade>(
       () => _i28.DashboardFacadeImpl(gh<_i25.IDashBoardDataSource>()));
   gh.lazySingleton<_i29.AuthBloc>(() => _i29.AuthBloc(gh<_i19.IAuthFacade>()));
-  gh.factory<_i30.ChatBotBloc>(
-      () => _i30.ChatBotBloc(gh<_i23.IChatBotFacade>()));
+  gh.factoryParam<_i30.ChatBotBloc, String, dynamic>((
+    url,
+    _,
+  ) =>
+      _i30.ChatBotBloc(
+        url,
+        gh<_i23.IChatBotFacade>(),
+      ));
   gh.factory<_i31.DashboardBloc>(
       () => _i31.DashboardBloc(gh<_i27.IDashBoardFacade>()));
   gh.singleton<_i32.AppRouter>(_i32.AppRouter(gh<_i29.AuthBloc>()));

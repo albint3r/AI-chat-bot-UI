@@ -16,7 +16,8 @@ part 'chatbot_state.dart';
 
 @injectable
 class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
-  ChatBotBloc(IChatBotFacade facade) : super(ChatBotState.initial()) {
+  ChatBotBloc(@factoryParam String url, IChatBotFacade facade)
+      : super(ChatBotState.initial()) {
     on<_Started>((event, emit) {
       final suggestedQuestions = facade.getRandomNSuggestedQuestion();
       emit(

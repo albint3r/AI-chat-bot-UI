@@ -99,7 +99,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         // Navigate to the Home Page
         final router = getIt<AppRouter>();
         router.replaceAll([
-          const ChatBotRoute(),
+          ChatBotRoute(
+            chatId: 'home',
+          ),
         ]);
       },
     );
