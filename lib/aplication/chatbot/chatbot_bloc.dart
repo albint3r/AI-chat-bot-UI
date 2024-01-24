@@ -7,6 +7,8 @@ import '../../domain/chatbot/answer_loading.dart';
 import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
+import '../../domain/core/app_error.dart';
+import '../../domain/dashboard/user_chatbot.dart';
 
 part 'chatbot_bloc.freezed.dart';
 
@@ -17,10 +19,13 @@ part 'chatbot_state.dart';
 @injectable
 class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
   ChatBotBloc(IChatBotFacade facade) : super(ChatBotState.initial()) {
-    on<_Started>((event, emit) {
+    on<_Started>((event, emit) async {
       final suggestedQuestions = facade.getRandomNSuggestedQuestion();
       // avoid to put the default name at the beginning.
+
       final chatId = event.chatId == ':chatId' ? 'home' : event.chatId;
+      final (appError, userChatBot) = await facade.existChatBotInfo(chatId);
+      //  Todo: Implement App error if exist
       emit(
         state.copyWith(
           formGroup: facade.formGroup,

@@ -4,7 +4,9 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../domain/chatbot/answer.dart';
 import '../../domain/chatbot/i_chatbot_data_source.dart';
+import '../../domain/core/app_error.dart';
 import '../../domain/core/types.dart';
+import '../../domain/dashboard/user_chatbot.dart';
 
 @Injectable(as: IChatBotDataSource)
 class ChatBotDataSourceImpl implements IChatBotDataSource {
@@ -40,5 +42,19 @@ class ChatBotDataSourceImpl implements IChatBotDataSource {
       },
     );
     return WebSocketChannel.connect(uri);
+  }
+
+  @override
+  Future<(AppError?, UserChatBot?)> existChatBotInfo(String chatId) async {
+    try {
+      final response = await _dio.post("/chatbot/v1/chatbots/$chatId");
+      final data = response.data as Json;
+      return (null, UserChatBot.fromJson(data));
+    } catch (e) {
+      return (
+        const AppError(errorType: ErrorType.NotFound, errorMsg: 'Error 404'),
+        null
+      );
+    }
   }
 }
