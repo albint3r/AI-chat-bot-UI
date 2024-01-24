@@ -13,14 +13,18 @@ import 'widgets/body_chatbot.dart';
 
 @RoutePage()
 class ChatBotPage extends StatelessWidget {
-  const ChatBotPage({super.key});
+  const ChatBotPage({
+    @PathParam('chatId') required this.chatId,
+  });
+
+  final String chatId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<ChatBotBloc>()
         ..add(
-          const ChatBotEvent.started(),
+          ChatBotEvent.started(chatId),
         ),
       child: MultiBlocListener(
         listeners: [

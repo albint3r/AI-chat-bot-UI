@@ -16,9 +16,13 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     ChatBotRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ChatBotRouteArgs>(
+          orElse: () =>
+              ChatBotRouteArgs(chatId: pathParams.getString('chatId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ChatBotPage(),
+        child: ChatBotPage(chatId: args.chatId),
       );
     },
     DashBoardRoute.name: (routeData) {
@@ -44,16 +48,32 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [ChatBotPage]
-class ChatBotRoute extends PageRouteInfo<void> {
-  const ChatBotRoute({List<PageRouteInfo>? children})
-      : super(
+class ChatBotRoute extends PageRouteInfo<ChatBotRouteArgs> {
+  ChatBotRoute({
+    required String chatId,
+    List<PageRouteInfo>? children,
+  }) : super(
           ChatBotRoute.name,
+          args: ChatBotRouteArgs(chatId: chatId),
+          rawPathParams: {'chatId': chatId},
           initialChildren: children,
         );
 
   static const String name = 'ChatBotRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ChatBotRouteArgs> page =
+      PageInfo<ChatBotRouteArgs>(name);
+}
+
+class ChatBotRouteArgs {
+  const ChatBotRouteArgs({required this.chatId});
+
+  final String chatId;
+
+  @override
+  String toString() {
+    return 'ChatBotRouteArgs{chatId: $chatId}';
+  }
 }
 
 /// generated route for

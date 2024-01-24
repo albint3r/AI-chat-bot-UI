@@ -22,6 +22,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         AutoRoute(
           page: ChatBotRoute.page,
           initial: true,
+          path: '/chats/:chatId',
         ),
         AutoRoute(
           page: LoginRoute.page,

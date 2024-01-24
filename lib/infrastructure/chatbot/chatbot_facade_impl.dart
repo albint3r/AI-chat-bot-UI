@@ -55,12 +55,17 @@ class ChatBotFacadeImpl implements IChatBotFacade {
   @override
   Future<List<IChatConversation>> postQuestion({
     String? textQuestion,
+    required String chatId,
   }) async {
     final control = _chatForm.control('question');
     textQuestion = textQuestion ?? control.value as String;
     control.value = '';
     if (textQuestion.isNotEmpty) {
-      final answer = await _dataSource.postQuestionQA(textQuestion);
+      final answer = await _dataSource.postQuestionQA(
+        textQuestion,
+        chatId,
+      );
+
       chatConversation.add(answer);
       return chatConversation;
     }
