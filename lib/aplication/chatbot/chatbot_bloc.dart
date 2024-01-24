@@ -16,15 +16,17 @@ part 'chatbot_state.dart';
 
 @injectable
 class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
-  ChatBotBloc(@factoryParam String url, IChatBotFacade facade)
-      : super(ChatBotState.initial()) {
+  ChatBotBloc(IChatBotFacade facade) : super(ChatBotState.initial()) {
     on<_Started>((event, emit) {
       final suggestedQuestions = facade.getRandomNSuggestedQuestion();
+      // avoid to put the default name at the beginning.
+      final chatId = event.chatId == ':chatId' ? 'home' : event.chatId;
       emit(
         state.copyWith(
           formGroup: facade.formGroup,
           suggestedQuestions: suggestedQuestions,
           isLoading: false,
+          chatId: chatId,
         ),
       );
     });
@@ -38,6 +40,7 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         // Add Answer to logs
         final newAnswer = await facade.postQuestion(
           textQuestion: event.textQuestion,
+          chatId: state.chatId,
         );
         if (newAnswer.isNotEmpty) {
           emit(

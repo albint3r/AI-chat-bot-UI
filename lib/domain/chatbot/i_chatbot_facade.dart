@@ -18,6 +18,7 @@ abstract interface class IChatBotFacade {
 
   Future<List<IChatConversation>> postQuestion({
     String? textQuestion,
+    required String chatId,
   });
 
   List<IChatConversation> getChatConversationFromWebSocket(

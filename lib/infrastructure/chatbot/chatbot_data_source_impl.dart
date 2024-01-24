@@ -17,9 +17,12 @@ class ChatBotDataSourceImpl implements IChatBotDataSource {
   final Uri _webSocketUri;
 
   @override
-  Future<Answer> postQuestionQA(String question) async {
+  Future<Answer> postQuestionQA(
+    String question,
+    String chatId,
+  ) async {
     final response = await _dio.post(
-      '/chatbot/v1/qa-chatbot',
+      '/chatbot/v1/qa-chatbot/$chatId',
       data: {
         'text': question,
       },
