@@ -8,7 +8,6 @@ import '../../domain/chatbot/chatbot_mode.dart';
 import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
 import '../../domain/core/app_error.dart';
-import '../../domain/dashboard/user_chatbot.dart';
 
 part 'chatbot_bloc.freezed.dart';
 
@@ -21,11 +20,22 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
   ChatBotBloc(IChatBotFacade facade) : super(ChatBotState.initial()) {
     on<_Started>((event, emit) async {
       final suggestedQuestions = facade.getRandomNSuggestedQuestion();
-      // avoid to put the default name at the beginning.
-
+      // Because at the begging the user don't put the url to the target chat
+      // Flutter create a default [:chatId], this would create problems
+      // in the backEnd. This is the reason why I change it for HOME
+      // this helps the backEnd to retrieval the correct default Chat.
       final chatId = event.chatId == ':chatId' ? 'home' : event.chatId;
-      final (appError, userChatBot) = await facade.existChatBotInfo(chatId);
-      //  Todo: Implement App error if exist
+      final (appError, _) = await facade.existChatBotInfo(chatId);
+      // if the chat don't exist it will send the user to page 404
+      if (appError is AppError) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            appError: appError,
+          ),
+        );
+        return;
+      }
       emit(
         state.copyWith(
           formGroup: facade.formGroup,

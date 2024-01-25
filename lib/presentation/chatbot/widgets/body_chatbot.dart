@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import '../../../aplication/chatbot/chatbot_bloc.dart';
+import '../../../domain/core/app_error.dart';
 import '../../core/theme/const_values.dart';
+import '../../core/widgets/text/text_title.dart';
 import 'conversation_area.dart';
 import 'lateralQuestionArea.dart';
 import 'query_text_field.dart';
@@ -20,6 +22,13 @@ class BodyChatBot extends StatelessWidget {
     if (chat.isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
+      );
+    }
+    // Todo: I could remove this and create a new page.
+    // and when the error only trigger to navigate to that page.
+    if (chat.appError is AppError) {
+      return Center(
+        child: TextTitle.h1('Error 404'),
       );
     }
     const lateralBrakingPoint = screenBreakingPoint + lateralContainerWith;
