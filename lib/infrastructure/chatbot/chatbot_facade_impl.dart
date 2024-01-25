@@ -14,7 +14,9 @@ import '../../domain/chatbot/i_chat_conversation.dart';
 import '../../domain/chatbot/i_chatbot_data_source.dart';
 import '../../domain/chatbot/i_chatbot_facade.dart';
 import '../../domain/chatbot/question.dart';
+import '../../domain/core/app_error.dart';
 import '../../domain/core/types.dart';
+import '../../domain/dashboard/user_chatbot.dart';
 import '../../presentation/core/theme/const_values.dart';
 
 @Injectable(as: IChatBotFacade)
@@ -125,4 +127,8 @@ class ChatBotFacadeImpl implements IChatBotFacade {
   void disconnectToChatAgentWebSocket() => _channel.sink.close(
         status.normalClosure,
       );
+
+  @override
+  Future<(AppError?, UserChatBot?)> existChatBotInfo(String chatId) async =>
+      await _dataSource.existChatBotInfo(chatId);
 }

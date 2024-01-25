@@ -10,6 +10,7 @@ class ChatBotState with _$ChatBotState {
     required List<IChatConversation> chatConversation,
     required List<IChatConversation> suggestedQuestions,
     FormGroup? formGroup,
+    AppError? appError,
   }) = _ChatBotState;
 
   factory ChatBotState.initial() => const ChatBotState(

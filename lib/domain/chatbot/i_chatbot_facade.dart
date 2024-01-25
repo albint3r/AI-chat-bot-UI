@@ -1,5 +1,7 @@
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import '../core/app_error.dart';
+import '../dashboard/user_chatbot.dart';
 import 'chatbot_mode.dart';
 import 'i_chat_conversation.dart';
 
@@ -32,4 +34,6 @@ abstract interface class IChatBotFacade {
   void addEventToChatAgentWebSocket({
     String? textQuestion,
   });
+
+  Future<(AppError?, UserChatBot?)> existChatBotInfo(String chatId);
 }

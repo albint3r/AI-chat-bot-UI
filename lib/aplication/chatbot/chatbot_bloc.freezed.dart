@@ -1049,6 +1049,7 @@ mixin _$ChatBotState {
   List<IChatConversation> get suggestedQuestions =>
       throw _privateConstructorUsedError;
   FormGroup? get formGroup => throw _privateConstructorUsedError;
+  AppError? get appError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatBotStateCopyWith<ChatBotState> get copyWith =>
@@ -1068,7 +1069,10 @@ abstract class $ChatBotStateCopyWith<$Res> {
       ChatBotMode chatBotMode,
       List<IChatConversation> chatConversation,
       List<IChatConversation> suggestedQuestions,
-      FormGroup? formGroup});
+      FormGroup? formGroup,
+      AppError? appError});
+
+  $AppErrorCopyWith<$Res>? get appError;
 }
 
 /// @nodoc
@@ -1091,6 +1095,7 @@ class _$ChatBotStateCopyWithImpl<$Res, $Val extends ChatBotState>
     Object? chatConversation = null,
     Object? suggestedQuestions = null,
     Object? formGroup = freezed,
+    Object? appError = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -1121,7 +1126,23 @@ class _$ChatBotStateCopyWithImpl<$Res, $Val extends ChatBotState>
           ? _value.formGroup
           : formGroup // ignore: cast_nullable_to_non_nullable
               as FormGroup?,
+      appError: freezed == appError
+          ? _value.appError
+          : appError // ignore: cast_nullable_to_non_nullable
+              as AppError?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppErrorCopyWith<$Res>? get appError {
+    if (_value.appError == null) {
+      return null;
+    }
+
+    return $AppErrorCopyWith<$Res>(_value.appError!, (value) {
+      return _then(_value.copyWith(appError: value) as $Val);
+    });
   }
 }
 
@@ -1140,7 +1161,11 @@ abstract class _$$ChatBotStateImplCopyWith<$Res>
       ChatBotMode chatBotMode,
       List<IChatConversation> chatConversation,
       List<IChatConversation> suggestedQuestions,
-      FormGroup? formGroup});
+      FormGroup? formGroup,
+      AppError? appError});
+
+  @override
+  $AppErrorCopyWith<$Res>? get appError;
 }
 
 /// @nodoc
@@ -1161,6 +1186,7 @@ class __$$ChatBotStateImplCopyWithImpl<$Res>
     Object? chatConversation = null,
     Object? suggestedQuestions = null,
     Object? formGroup = freezed,
+    Object? appError = freezed,
   }) {
     return _then(_$ChatBotStateImpl(
       isLoading: null == isLoading
@@ -1191,6 +1217,10 @@ class __$$ChatBotStateImplCopyWithImpl<$Res>
           ? _value.formGroup
           : formGroup // ignore: cast_nullable_to_non_nullable
               as FormGroup?,
+      appError: freezed == appError
+          ? _value.appError
+          : appError // ignore: cast_nullable_to_non_nullable
+              as AppError?,
     ));
   }
 }
@@ -1205,7 +1235,8 @@ class _$ChatBotStateImpl implements _ChatBotState {
       required this.chatBotMode,
       required final List<IChatConversation> chatConversation,
       required final List<IChatConversation> suggestedQuestions,
-      this.formGroup})
+      this.formGroup,
+      this.appError})
       : _chatConversation = chatConversation,
         _suggestedQuestions = suggestedQuestions;
 
@@ -1237,10 +1268,12 @@ class _$ChatBotStateImpl implements _ChatBotState {
 
   @override
   final FormGroup? formGroup;
+  @override
+  final AppError? appError;
 
   @override
   String toString() {
-    return 'ChatBotState(isLoading: $isLoading, isFetching: $isFetching, chatId: $chatId, chatBotMode: $chatBotMode, chatConversation: $chatConversation, suggestedQuestions: $suggestedQuestions, formGroup: $formGroup)';
+    return 'ChatBotState(isLoading: $isLoading, isFetching: $isFetching, chatId: $chatId, chatBotMode: $chatBotMode, chatConversation: $chatConversation, suggestedQuestions: $suggestedQuestions, formGroup: $formGroup, appError: $appError)';
   }
 
   @override
@@ -1260,7 +1293,9 @@ class _$ChatBotStateImpl implements _ChatBotState {
             const DeepCollectionEquality()
                 .equals(other._suggestedQuestions, _suggestedQuestions) &&
             (identical(other.formGroup, formGroup) ||
-                other.formGroup == formGroup));
+                other.formGroup == formGroup) &&
+            (identical(other.appError, appError) ||
+                other.appError == appError));
   }
 
   @override
@@ -1272,7 +1307,8 @@ class _$ChatBotStateImpl implements _ChatBotState {
       chatBotMode,
       const DeepCollectionEquality().hash(_chatConversation),
       const DeepCollectionEquality().hash(_suggestedQuestions),
-      formGroup);
+      formGroup,
+      appError);
 
   @JsonKey(ignore: true)
   @override
@@ -1289,7 +1325,8 @@ abstract class _ChatBotState implements ChatBotState {
       required final ChatBotMode chatBotMode,
       required final List<IChatConversation> chatConversation,
       required final List<IChatConversation> suggestedQuestions,
-      final FormGroup? formGroup}) = _$ChatBotStateImpl;
+      final FormGroup? formGroup,
+      final AppError? appError}) = _$ChatBotStateImpl;
 
   @override
   bool get isLoading;
@@ -1305,6 +1342,8 @@ abstract class _ChatBotState implements ChatBotState {
   List<IChatConversation> get suggestedQuestions;
   @override
   FormGroup? get formGroup;
+  @override
+  AppError? get appError;
   @override
   @JsonKey(ignore: true)
   _$$ChatBotStateImplCopyWith<_$ChatBotStateImpl> get copyWith =>
