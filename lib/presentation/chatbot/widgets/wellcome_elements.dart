@@ -25,9 +25,9 @@ class WellComeElements extends StatelessWidget {
           ),
         ),
         // This breaking point helps to avoid the overlap of the objects
-        // inside the column. This create a cascade effect when first
-        // hide the questions ros boxes and after thad the avatar picture.
-        // Check also: the body chatbot
+        // inside the column. This create a cascade effect when first breaking point
+        // hides the questions row boxes and after thad the avatar picture.
+        // Check also: the body chat-bot
         if (size.height >= upperBrakingPoint) const QuestionsRowBox(),
       ],
     );

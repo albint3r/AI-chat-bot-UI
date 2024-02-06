@@ -37,8 +37,8 @@ class BodyChatBot extends StatelessWidget {
     return Row(
       children: [
         // This breaking point helps to avoid the overlap of the objects
-        // inside the column. This create a cascade effect when first
-        // hide the questions ros boxes and after thad the avatar picture.
+        // inside the column. This create a cascade effect when first breaking point
+        // hides the questions row boxes and after thad the avatar picture.
         // Check also: the Welcome elements to see the implementation there.
         if (size.width >= lateralBrakingPoint) const LateralQuestionArea(),
         Expanded(
