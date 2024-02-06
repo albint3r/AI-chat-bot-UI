@@ -36,7 +36,7 @@ class FormArea extends StatelessWidget {
           Expanded(
             child: SizedBox(
               width: 400,
-              child: Column(
+              child: ListView(
                 children: [
                   // Create all the field in the form.
                   // use the name controls to create it.

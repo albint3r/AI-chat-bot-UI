@@ -7,6 +7,7 @@ class CustomAppTexTField extends StatelessWidget {
   const CustomAppTexTField({
     required this.formControlName,
     this.hintText = '',
+    this.labelText = '',
     this.obscureText = false,
     this.suffixIcon = const Icon(Icons.email),
     super.key,
@@ -14,6 +15,7 @@ class CustomAppTexTField extends StatelessWidget {
 
   final String formControlName;
   final String hintText;
+  final String labelText;
   final Widget? suffixIcon;
   final bool obscureText;
 
@@ -26,6 +28,11 @@ class CustomAppTexTField extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final style = theme.textTheme.bodyMedium;
 
+    String _getFormatLabelText(String formControlName) {
+      final words = formControlName.split('_')..join(' ');
+      return words.join(' ').toUpperCase();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(padding),
       child: SizedBox(
@@ -36,7 +43,9 @@ class CustomAppTexTField extends StatelessWidget {
           style: style,
           // todo: create a extension to add title text style
           decoration: InputDecoration(
-            labelText: formControlName.toUpperCase(),
+            labelText: labelText.isNotEmpty
+                ? labelText
+                : _getFormatLabelText(formControlName),
             hintText: hintText,
             suffixIcon: Padding(
               padding: const EdgeInsets.only(right: padding),

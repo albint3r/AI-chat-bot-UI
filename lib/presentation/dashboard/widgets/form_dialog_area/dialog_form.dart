@@ -35,6 +35,7 @@ class DialogForm extends StatelessWidget {
           ),
         ),
         // Todo: I can change this values latter??
+        // add a const value here  in the max height.
         constraints: BoxConstraints(
           maxHeight: size.height * .80,
           minHeight: minHeight,
