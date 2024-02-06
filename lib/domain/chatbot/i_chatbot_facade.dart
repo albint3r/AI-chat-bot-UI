@@ -27,7 +27,7 @@ abstract interface class IChatBotFacade {
     dynamic data,
   );
 
-  WebSocketChannel connectToChatAgentWebSocket();
+  WebSocketChannel connectToChatAgentWebSocket(String chadId);
 
   void disconnectToChatAgentWebSocket();
 
