@@ -19,6 +19,11 @@ class CustomAppTexTField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
 
+  String _getFormatLabelText(String formControlName) {
+    final words = formControlName.split('_')..join(' ');
+    return words.join(' ').toUpperCase();
+  }
+
   @override
   Widget build(BuildContext context) {
     //The size box create the effect to hacker the field. When the
@@ -27,11 +32,6 @@ class CustomAppTexTField extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final style = theme.textTheme.bodyMedium;
-
-    String _getFormatLabelText(String formControlName) {
-      final words = formControlName.split('_')..join(' ');
-      return words.join(' ').toUpperCase();
-    }
 
     return Padding(
       padding: const EdgeInsets.all(padding),
