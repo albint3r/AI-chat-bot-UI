@@ -96,7 +96,7 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
           isLoading: true,
         ),
       );
-      final channel = facade.connectToChatAgentWebSocket();
+      final channel = facade.connectToChatAgentWebSocket(state.chatId);
       emit(
         state.copyWith(
           isLoading: false,

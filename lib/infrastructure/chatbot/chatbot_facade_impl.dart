@@ -117,9 +117,7 @@ class ChatBotFacadeImpl implements IChatBotFacade {
   }
 
   @override
-  WebSocketChannel connectToChatAgentWebSocket() {
-    const uuid = Uuid();
-    final chatId = uuid.v4();
+  WebSocketChannel connectToChatAgentWebSocket(String chatId) {
     return _channel = _dataSource.connectToChatAgentWebSocket(chatId);
   }
 
