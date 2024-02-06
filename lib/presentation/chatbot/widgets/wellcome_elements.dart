@@ -10,6 +10,8 @@ class WellComeElements extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const upperBrakingPoint = 570;
+    final size = MediaQuery.of(context).size;
     return Column(
       children: [
         Expanded(
@@ -22,7 +24,11 @@ class WellComeElements extends StatelessWidget {
             ],
           ),
         ),
-        const QuestionsRowBox(),
+        // This breaking point helps to avoid the overlap of the objects
+        // inside the column. This create a cascade effect when first
+        // hide the questions ros boxes and after thad the avatar picture.
+        // Check also: the body chatbot
+        if (size.height >= upperBrakingPoint) const QuestionsRowBox(),
       ],
     );
   }
