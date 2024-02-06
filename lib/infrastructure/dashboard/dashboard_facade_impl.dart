@@ -8,6 +8,9 @@ import '../../domain/dashboard/i_dashboard_data_source.dart';
 import '../../domain/dashboard/i_dashboard_facade.dart';
 import '../../domain/dashboard/user_chatbot.dart';
 
+const minLength = 5;
+const maxLength = 5;
+
 @Injectable(as: IDashBoardFacade)
 class DashboardFacadeImpl implements IDashBoardFacade {
   DashboardFacadeImpl(this._dataSource);
@@ -24,6 +27,7 @@ class DashboardFacadeImpl implements IDashBoardFacade {
         validators: [
           Validators.required,
           Validators.maxLength(36),
+          Validators.minLength(minLength),
         ],
       ),
       "description": FormControl<String>(
@@ -37,24 +41,28 @@ class DashboardFacadeImpl implements IDashBoardFacade {
         validators: [
           Validators.required,
           Validators.maxLength(36),
+          Validators.minLength(minLength),
         ],
       ),
       "open_ai_api_key": FormControl<String>(
         validators: [
           Validators.required,
-          Validators.maxLength(255),
+          Validators.maxLength(maxLength),
+          Validators.minLength(minLength),
         ],
       ),
       "pinecone_api_key": FormControl<String>(
         validators: [
           Validators.required,
-          Validators.maxLength(255),
+          Validators.maxLength(maxLength),
+          Validators.minLength(minLength),
         ],
       ),
       "pinecone_environment": FormControl<String>(
         validators: [
           Validators.required,
-          Validators.maxLength(255),
+          Validators.maxLength(maxLength),
+          Validators.minLength(minLength),
         ],
       ),
     }),
@@ -62,7 +70,7 @@ class DashboardFacadeImpl implements IDashBoardFacade {
       "file": FormControl<String>(
         validators: [
           Validators.required,
-          Validators.maxLength(255),
+          Validators.maxLength(maxLength),
         ],
       ),
     }),
