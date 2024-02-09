@@ -18,4 +18,9 @@ class DashboardEvent with _$DashboardEvent {
     UserChatBot userChatBot,
     int chatIndex,
   ) = _UpdateChatActiveState;
+
+
+  const factory DashboardEvent.deleteChatBot(
+      UserChatBot userChatBot,
+      ) = _DeleteChatBot;
 }

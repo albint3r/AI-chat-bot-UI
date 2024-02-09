@@ -9,7 +9,7 @@ import '../../domain/dashboard/i_dashboard_facade.dart';
 import '../../domain/dashboard/user_chatbot.dart';
 
 const minLength = 5;
-const maxLength = 5;
+const maxLength = 255;
 
 @Injectable(as: IDashBoardFacade)
 class DashboardFacadeImpl implements IDashBoardFacade {
@@ -158,5 +158,10 @@ class DashboardFacadeImpl implements IDashBoardFacade {
       userChatBot.isActive,
       userChatBot.chatbotId,
     );
+  }
+
+  @override
+  Future<void> deleteUserChatBot(UserChatBot userChatBot) async{
+    await _dataSource.deleteUserChatBot(userChatBot);
   }
 }
