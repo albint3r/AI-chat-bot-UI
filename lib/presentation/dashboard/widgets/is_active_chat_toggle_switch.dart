@@ -21,7 +21,7 @@ class IsActiveChatToggleSwitch extends StatelessWidget {
     final dashboard = context.watch<DashboardBloc>().state;
     final currIndex = userChatBot.isActive ? 0 : 1;
     return ToggleSwitch(
-      minWidth: 60.0,
+      minWidth: 45.0,
       minHeight: 30,
       initialLabelIndex: currIndex,
       cornerRadius: 20.0,

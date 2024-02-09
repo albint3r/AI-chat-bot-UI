@@ -18,7 +18,7 @@ class SingleChatItem extends StatelessWidget {
   final Widget leading;
 
   double _getReactiveWidth(double width, int breakingPoint) =>
-      width >= breakingPoint ? width * .12 : 85;
+      width >= breakingPoint ? width * .12 : 50;
 
   @override
   Widget build(BuildContext context) {

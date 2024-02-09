@@ -14,4 +14,6 @@ abstract interface class IDashBoardDataSource {
     bool isActive,
     String chatBotId,
   );
+
+  Future<void> deleteUserChatBot(UserChatBot userChatBot);
 }

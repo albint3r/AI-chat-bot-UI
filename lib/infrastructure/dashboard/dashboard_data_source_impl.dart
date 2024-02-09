@@ -68,4 +68,21 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
       throw Exception('Fatal Error With the Update Activity State.');
     }
   }
+
+  @override
+  Future<void> deleteUserChatBot(UserChatBot userChatBot) async {
+    const path = "/data-manager/v1/delete/chatbot";
+    final response = await _dio.delete(
+      path,
+      data: {
+        "chatbot_id": userChatBot.chatbotId,
+        "index_name": userChatBot.indexName,
+        "pinecone_api_key": userChatBot.pineconeApiKey,
+        "pinecone_environment": userChatBot.pineconeEnvironment,
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Error Deleting the user ChatBot');
+    }
+  }
 }

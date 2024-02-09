@@ -99,6 +99,21 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         );
       }
     });
+    on<_DeleteChatBot>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+        ),
+      );
+      await facade.deleteUserChatBot(event.userChatBot);
+      final userChatBots = await facade.getUserChatBots();
+      emit(
+        state.copyWith(
+          isLoading: false,
+          userChatBots: userChatBots,
+        ),
+      );
+    });
   }
 
   Future<void> _finishProcess(

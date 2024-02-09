@@ -26,4 +26,8 @@ abstract interface class IDashBoardFacade {
   Future<void> updateChatBotActiveStatus(
     UserChatBot userChatBot,
   );
+
+  Future<void> deleteUserChatBot(
+    UserChatBot userChatBot,
+  );
 }

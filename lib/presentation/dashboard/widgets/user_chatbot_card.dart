@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../domain/dashboard/user_chatbot.dart';
 import '../../core/router/app_router.dart';
 import '../../core/theme/const_values.dart';
+import 'add_question_button.dart';
+import 'delete_chat_button.dart';
 import 'is_active_chat_toggle_switch.dart';
 import 'single_chat_item.dart';
 
@@ -57,6 +60,12 @@ class UserChatBotCard extends StatelessWidget {
                 IsActiveChatToggleSwitch(
                   userChatBot,
                   index: index,
+                ),
+                const Gap(padding),
+                const AddQuestionButton(),
+                const Gap(padding),
+                DeleteChatButton(
+                  userChatBot: userChatBot,
                 ),
               ],
             ),
