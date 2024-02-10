@@ -124,6 +124,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         event.userChatBot,
         event.data,
       );
+      emit(
+        state.copyWith(
+          isLoading: false,
+        ),
+      );
     });
   }
 
