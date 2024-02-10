@@ -85,4 +85,34 @@ class DashboardDataSourceImpl implements IDashBoardDataSource {
       throw Exception('Error Deleting the user ChatBot');
     }
   }
+
+  @override
+  Future<void> addSingleQuestionToChatBot(
+    UserChatBot userChatBot,
+    (String, String) qa,
+  ) async {
+    const path = "/data-manager/v1/add-questions";
+    final response = await _dio.post(
+      path,
+      data: {
+        'documents': [
+          {
+            "page_content": "question: ${qa.$1}. answer: ${qa.$2}.",
+            "metadata": {},
+          }
+        ],
+        "data": {
+          "chatbot_id": userChatBot.chatbotId,
+          "index_name": userChatBot.indexName,
+          "pinecone_api_key": userChatBot.pineconeApiKey,
+          "pinecone_environment": userChatBot.pineconeEnvironment,
+        },
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception(
+        'Error adding single question to ${userChatBot.chatbotId}',
+      );
+    }
+  }
 }

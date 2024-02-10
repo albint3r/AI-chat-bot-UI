@@ -161,7 +161,21 @@ class DashboardFacadeImpl implements IDashBoardFacade {
   }
 
   @override
-  Future<void> deleteUserChatBot(UserChatBot userChatBot) async{
+  Future<void> deleteUserChatBot(UserChatBot userChatBot) async {
     await _dataSource.deleteUserChatBot(userChatBot);
+  }
+
+  @override
+  Future<void> addSingleQuestionToChatBot(
+    UserChatBot userChatBot,
+    Map<String, Object?> data,
+  ) async {
+    final question = data['question']! as String;
+    final answer = data['answer']! as String;
+    final qa = (question, answer);
+    await _dataSource.addSingleQuestionToChatBot(
+      userChatBot,
+      qa,
+    );
   }
 }

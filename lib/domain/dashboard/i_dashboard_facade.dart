@@ -30,4 +30,9 @@ abstract interface class IDashBoardFacade {
   Future<void> deleteUserChatBot(
     UserChatBot userChatBot,
   );
+
+  Future<void> addSingleQuestionToChatBot(
+    UserChatBot userChatBot,
+    Map<String, Object?> data,
+  );
 }

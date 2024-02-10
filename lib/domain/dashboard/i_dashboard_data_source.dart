@@ -16,4 +16,9 @@ abstract interface class IDashBoardDataSource {
   );
 
   Future<void> deleteUserChatBot(UserChatBot userChatBot);
+
+  Future<void> addSingleQuestionToChatBot(
+    UserChatBot userChatBot,
+    (String, String) qa,
+  );
 }

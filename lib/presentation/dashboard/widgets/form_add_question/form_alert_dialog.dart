@@ -8,7 +8,7 @@ import '../../../core/widgets/text/text_body.dart';
 import '../../../core/widgets/text/text_title.dart';
 
 const boxWidth = 700.0;
-const boxHeight = 80.0;
+const boxHeight = 100.0;
 const double fieldWidth = (boxWidth / 2) - 20;
 
 class FormAlertDialog extends StatelessWidget {
