@@ -62,7 +62,9 @@ class UserChatBotCard extends StatelessWidget {
                   index: index,
                 ),
                 const Gap(padding),
-                const AddQuestionButton(),
+                AddQuestionButton(
+                  userChatBot: userChatBot,
+                ),
                 const Gap(padding),
                 DeleteChatButton(
                   userChatBot: userChatBot,

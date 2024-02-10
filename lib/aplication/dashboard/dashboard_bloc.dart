@@ -114,6 +114,22 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         ),
       );
     });
+    on<_AddSingleQuestionToChatBot>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+        ),
+      );
+      await facade.addSingleQuestionToChatBot(
+        event.userChatBot,
+        event.data,
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+        ),
+      );
+    });
   }
 
   Future<void> _finishProcess(
