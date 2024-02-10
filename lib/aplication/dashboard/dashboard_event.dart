@@ -23,4 +23,5 @@ class DashboardEvent with _$DashboardEvent {
   const factory DashboardEvent.deleteChatBot(
       UserChatBot userChatBot,
       ) = _DeleteChatBot;
+
 }

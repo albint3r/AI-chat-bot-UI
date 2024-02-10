@@ -11,6 +11,7 @@ class CustomAppTexTField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon = const Icon(Icons.email),
     super.key,
+    this.width = textFieldWidth,
   });
 
   final String formControlName;
@@ -18,6 +19,7 @@ class CustomAppTexTField extends StatelessWidget {
   final String labelText;
   final Widget? suffixIcon;
   final bool obscureText;
+  final double width;
 
   String _getFormatLabelText(String formControlName) {
     final words = formControlName.split('_')..join(' ');
@@ -36,7 +38,7 @@ class CustomAppTexTField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(padding),
       child: SizedBox(
-        width: textFieldWidth,
+        width: width,
         child: ReactiveTextField(
           formControlName: formControlName,
           obscureText: obscureText,
